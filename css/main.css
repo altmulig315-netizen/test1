@@ -1,0 +1,259 @@
+
+  :root{
+    --circle-size: 320px;
+    --border: 3px solid #222;
+    --bg-yellow: #ffeb3b;
+  }
+
+  /* Midtstill alt og gul bakgrunn */
+  body{
+    margin:0;
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    background: var(--bg-yellow);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    overflow:hidden;      /* skjul konfetti utenfor skjerm */
+  }
+
+  .wrap{ position:relative; display:grid; place-items:center; }
+
+  /* Sirkel */
+  .circle{
+    width: var(--circle-size);
+    aspect-ratio: 1/1;
+    border: var(--border);
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    display:grid;
+    place-items:center;
+    text-align:center;
+    padding: 2rem;
+    box-shadow: 0 6px 24px rgba(0,0,0,.08);
+    transition: transform .25s ease, filter .2s ease;
+    user-select:none;
+    position:relative;
+    z-index: 2;          
+  }
+  /*Ditta skal være over konfettien*/
+  .circle p{
+    margin:0;
+    line-height:1.25;
+    font-weight:700;
+    letter-spacing:.3px;
+    font-size: clamp(1.2rem, 2.2vw + .5rem, 2rem);
+    white-space: pre-line;
+  }
+  /*Hovereffekten*/
+  .circle:hover{
+    animation:
+      spin 1.5s ease-in-out infinite,
+      blink 1.05s steps(2,start) infinite,
+      circleColors 0.5s ease-in-out infinite;
+    filter: drop-shadow(0 10px 28px rgba(100, 15, 15, 0.15));
+  }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+  @keyframes blink{ 50%{ opacity:.25; } }
+ @keyframes circleColors {
+  0%   { background:#ff0000; color:#fff; }    /* Rød */
+  2.5% { background:#ff7f00; color:#111; }    /* Oransje */
+  5%   { background:#ffff00; color:#111; }    /* Gul */
+  7.5% { background:#7fff00; color:#111; }    /* Limegrønn */
+  10%  { background:#00ff00; color:#111; }    /* Grønn */
+  12.5%{ background:#00ff7f; color:#111; }    /* Turkisgrønn */
+  15%  { background:#00ffff; color:#111; }    /* Cyan */
+  17.5%{ background:#007fff; color:#fff; }    /* Himmelblå */
+  20%  { background:#0000ff; color:#fff; }    /* Blå */
+  22.5%{ background:#7f00ff; color:#fff; }    /* Lilla */
+  25%  { background:#bf00ff; color:#fff; }    /* Fiolett */
+  27.5%{ background:#ff00ff; color:#fff; }    /* Magenta */
+  30%  { background:#ff007f; color:#fff; }    /* Rosa */
+  32.5%{ background:#ff1493; color:#fff; }    /* Dyp rosa */
+  35%  { background:#ff69b4; color:#111; }    /* Lys rosa */
+  37.5%{ background:#ffa07a; color:#111; }    /* Laks */
+  40%  { background:#ffb6c1; color:#111; }    /* Pastell rosa */
+  42.5%{ background:#ffd700; color:#111; }    /* Gull */
+  45%  { background:#ffe4b5; color:#111; }    /* Moccasin */
+  47.5%{ background:#ffffe0; color:#111; }    /* Lys gul */
+  50%  { background:#f0fff0; color:#111; }    /* Honningdugg */
+  52.5%{ background:#e0ffff; color:#111; }    /* Lyse cyan */
+  55%  { background:#afeeee; color:#111; }    /* Lyseblå */
+  57.5%{ background:#87cefa; color:#111; }    /* Himmelblå */
+  60%  { background:#4682b4; color:#fff; }    /* Stålblå */
+  62.5%{ background:#4169e1; color:#fff; }    /* Royal Blue */
+  65%  { background:#191970; color:#fff; }    /* Midnight Blue */
+  67.5%{ background:#2f4f4f; color:#fff; }    /* Mørk grågrønn */
+  70%  { background:#006400; color:#fff; }    /* Mørk grønn */
+  72.5%{ background:#228b22; color:#fff; }    /* Skoggrønn */
+  75%  { background:#808000; color:#fff; }    /* Oliven */
+  77.5%{ background:#8b4513; color:#fff; }    /* Saddle Brown */
+  80%  { background:#a0522d; color:#fff; }    /* Sienna */
+  82.5%{ background:#d2691e; color:#111; }    /* Sjokolade */
+  85%  { background:#cd853f; color:#111; }    /* Peru */
+  87.5%{ background:#deb887; color:#111; }    /* BurlyWood */
+  90%  { background:#f5deb3; color:#111; }    /* Wheat */
+  92.5%{ background:#d3d3d3; color:#111; }    /* Lys grå */
+  95%  { background:#a9a9a9; color:#fff; }    /* Mørk grå */
+  97.5%{ background:#696969; color:#fff; }    /* Dim Gray */
+  100% { background:#000000; color:#fff; }    /* Svart */
+}
+  /*Konfettilag*/
+  .confetti-layer{
+    border-radius: 20px;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  /* Konfetti CSS animasjon*/
+  .confetti{
+    position: absolute;
+    top: -10vh;                   
+    width: 18px;
+    height: 24px;
+    border-radius: 3px;
+    opacity: .95;
+    will-change: transform, opacity;
+    animation-name: fall, spinbit;  
+    animation-timing-function: linear, linear;
+    animation-iteration-count: infinite, infinite;
+   
+  }
+
+  /*side-drift. styrt av CSS-variabler */
+  @keyframes fall{
+    0%   { transform: translate3d(var(--x,0vw), -2vh, 0); opacity: .95; }
+    100% { transform: translate3d(calc(var(--x,0vw) + var(--dx,0vw)), 110vh, 0); opacity: 1; }
+  }
+  /* snurr på hver bit*/
+  /*@keyframes spinbit{
+    to { rotate: 1turn; }
+  }
+
+  /* Fargepalett */
+  .c1{  background:#FF4D4D; }
+  .c2{  background:#FFB84D; }
+  .c3{  background:#4DFF88; }
+  .c4{  background:#4DB8FF; }
+  .c5{  background:#B84DFF; }
+  .c6{  background:#FF66CC; }
+  .c7{  background:#FFD24D; }
+  .c8{  background:#4DFFD2; }
+  .c9{  background:#795548; }
+  .c10{ background:#607d8b; }
+
+  /* konfettier */
+  .confetti:nth-child(1)  { --x: 5vw;   --dx:  10vw; animation-duration: 6.5s, 3.9s;  animation-delay: .0s, .0s; }
+  .confetti:nth-child(2)  { --x: 10vw;  --dx: -8vw;  animation-duration: 7.2s, 4.6s;  animation-delay: .4s, .1s; }
+  .confetti:nth-child(3)  { --x: 15vw;  --dx:  6vw;  animation-duration: 6.7s, 4.2s;  animation-delay: .8s, .2s; }
+  .confetti:nth-child(4)  { --x: 20vw;  --dx: -12vw; animation-duration: 7.5s, 5.0s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(5)  { --x: 25vw;  --dx:  9vw;  animation-duration: 6.9s, 3.8s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(6)  { --x: 30vw;  --dx: -6vw;  animation-duration: 6.4s, 4.4s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(7)  { --x: 35vw;  --dx:  12vw; animation-duration: 7.6s, 3.6s;  animation-delay: .3s, .2s; }
+  .confetti:nth-child(8)  { --x: 40vw;  --dx: -9vw;  animation-duration: 6.6s, 4.1s;  animation-delay: .7s, .3s; }
+  .confetti:nth-child(9)  { --x: 45vw;  --dx:  7vw;  animation-duration: 7.1s, 5.2s;  animation-delay: .1s, .0s; }
+  .confetti:nth-child(10) { --x: 50vw;  --dx: -11vw; animation-duration: 7.9s, 4.9s;  animation-delay: .5s, .1s; }
+  .confetti:nth-child(11) { --x: 55vw;  --dx:  8vw;  animation-duration: 6.8s, 3.7s;  animation-delay: .9s, .2s; }
+  .confetti:nth-child(12) { --x: 60vw;  --dx: -7vw;  animation-duration: 6.3s, 4.5s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(13) { --x: 65vw;  --dx:  11vw; animation-duration: 7.8s, 3.9s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(14) { --x: 70vw;  --dx: -10vw; animation-duration: 7.0s, 4.2s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(15) { --x: 75vw;  --dx:  6vw;  animation-duration: 6.7s, 4.0s;  animation-delay: .3s, .2s; }
+  .confetti:nth-child(16) { --x: 80vw;  --dx: -9vw;  animation-duration: 7.4s, 4.8s;  animation-delay: .7s, .3s; }
+  .confetti:nth-child(17) { --x: 85vw;  --dx:  9vw;  animation-duration: 6.5s, 3.9s;  animation-delay: .1s, .0s; }
+  .confetti:nth-child(18) { --x: 90vw;  --dx: -8vw;  animation-duration: 7.2s, 4.6s;  animation-delay: .5s, .1s; }
+  .confetti:nth-child(19) { --x: 95vw;  --dx:  10vw; animation-duration: 7.7s, 5.1s;  animation-delay: .9s, .2s; }
+  .confetti:nth-child(20) { --x: 2vw;   --dx: -6vw;  animation-duration: 6.2s, 3.8s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(21) { --x: 12vw;  --dx:  7vw;  animation-duration: 7.3s, 4.7s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(22) { --x: 22vw;  --dx: -11vw; animation-duration: 7.9s, 5.0s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(23) { --x: 32vw;  --dx:  8vw;  animation-duration: 6.6s, 3.6s;  animation-delay: .3s, .2s; }
+  .confetti:nth-child(24) { --x: 42vw;  --dx: -7vw;  animation-duration: 6.9s, 4.1s;  animation-delay: .7s, .3s; }
+  .confetti:nth-child(25) { --x: 52vw;  --dx:  12vw; animation-duration: 7.8s, 5.3s;  animation-delay: .1s, .0s; }
+  .confetti:nth-child(26) { --x: 62vw;  --dx: -9vw;  animation-duration: 6.8s, 4.4s;  animation-delay: .5s, .1s; }
+  .confetti:nth-child(27) { --x: 72vw;  --dx:  9vw;  animation-duration: 7.1s, 3.9s;  animation-delay: .9s, .2s; }
+  .confetti:nth-child(28) { --x: 82vw;  --dx: -10vw; animation-duration: 7.5s, 4.6s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(29) { --x: 92vw;  --dx:  6vw;  animation-duration: 6.4s, 4.0s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(30) { --x: 98vw;  --dx: -8vw;  animation-duration: 7.0s, 4.9s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(31) { --x: 5vw;   --dx:  10vw; animation-duration: 6.5s, 3.9s;  animation-delay: .0s, .0s; }
+  .confetti:nth-child(32) { --x: 10vw;  --dx: -8vw;  animation-duration: 7.2s, 4.6s;  animation-delay: .4s, .1s; }
+  .confetti:nth-child(33) { --x: 15vw;  --dx:  6vw;  animation-duration: 6.7s, 4.2s;  animation-delay: .8s, .2s; }
+  .confetti:nth-child(34) { --x: 20vw;  --dx: -12vw; animation-duration: 7.5s, 5.0s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(35) { --x: 25vw;  --dx:  9vw;  animation-duration: 6.9s, 3.8s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(36) { --x: 30vw;  --dx: -6vw;  animation-duration: 6.4s, 4.4s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(37) { --x: 35vw;  --dx:  12vw; animation-duration: 7.6s, 3.6s;  animation-delay: .3s, .2s; }
+  .confetti:nth-child(38) { --x: 40vw;  --dx: -9vw;  animation-duration: 6.6s, 4.1s;  animation-delay: .7s, .3s; }
+  .confetti:nth-child(39) { --x: 45vw;  --dx:  7vw;  animation-duration: 7.1s, 5.2s;  animation-delay: .1s, .0s; }
+  .confetti:nth-child(40) { --x: 50vw;  --dx: -11vw; animation-duration: 7.9s, 4.9s;  animation-delay: .5s, .1s; }
+  .confetti:nth-child(41) { --x: 55vw;  --dx:  8vw;  animation-duration: 6.8s, 3.7s;  animation-delay: .9s, .2s; }
+  .confetti:nth-child(42) { --x: 60vw;  --dx: -7vw;  animation-duration: 6.3s, 4.5s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(43) { --x: 65vw;  --dx:  11vw; animation-duration: 7.8s, 3.9s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(44) { --x: 70vw;  --dx: -10vw; animation-duration: 7.0s, 4.2s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(45) { --x: 75vw;  --dx:  6vw;  animation-duration: 6.7s, 4.0s;  animation-delay: .3s, .2s; }
+  .confetti:nth-child(46) { --x: 80vw;  --dx: -9vw;  animation-duration: 7.4s, 4.8s;  animation-delay: .7s, .3s; }
+  .confetti:nth-child(47) { --x: 85vw;  --dx:  9vw;  animation-duration: 6.5s, 3.9s;  animation-delay: .1s, .0s; }
+  .confetti:nth-child(48) { --x: 90vw;  --dx: -8vw;  animation-duration: 7.2s, 4.6s;  animation-delay: .5s, .1s; }
+  .confetti:nth-child(49) { --x: 95vw;  --dx:  10vw; animation-duration: 7.7s, 5.1s;  animation-delay: .9s, .2s; }
+  .confetti:nth-child(40) { --x: 2vw;   --dx: -6vw;  animation-duration: 6.2s, 3.8s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(41) { --x: 12vw;  --dx:  7vw;  animation-duration: 7.3s, 4.7s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(42) { --x: 22vw;  --dx: -11vw; animation-duration: 7.9s, 5.0s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(43) { --x: 32vw;  --dx:  8vw;  animation-duration: 6.6s, 3.6s;  animation-delay: .3s, .2s; }
+  .confetti:nth-child(44) { --x: 42vw;  --dx: -7vw;  animation-duration: 6.9s, 4.1s;  animation-delay: .7s, .3s; }
+  .confetti:nth-child(45) { --x: 52vw;  --dx:  12vw; animation-duration: 7.8s, 5.3s;  animation-delay: .1s, .0s; }
+  .confetti:nth-child(46) { --x: 62vw;  --dx: -9vw;  animation-duration: 6.8s, 4.4s;  animation-delay: .5s, .1s; }
+  .confetti:nth-child(47) { --x: 72vw;  --dx:  9vw;  animation-duration: 7.1s, 3.9s;  animation-delay: .9s, .2s; }
+  .confetti:nth-child(48) { --x: 82vw;  --dx: -10vw; animation-duration: 7.5s, 4.6s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(49) { --x: 92vw;  --dx:  6vw;  animation-duration: 6.4s, 4.0s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(50) { --x: 98vw;  --dx: -8vw;  animation-duration: 7.0s, 4.9s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(51) { --x: 5vw;   --dx:  10vw; animation-duration: 6.5s, 3.9s;  animation-delay: .0s, .0s; }
+  .confetti:nth-child(52) { --x: 10vw;  --dx: -8vw;  animation-duration: 7.2s, 4.6s;  animation-delay: .4s, .1s; }
+  .confetti:nth-child(53) { --x: 15vw;  --dx:  6vw;  animation-duration: 6.7s, 4.2s;  animation-delay: .8s, .2s; }
+  .confetti:nth-child(54) { --x: 20vw;  --dx: -12vw; animation-duration: 7.5s, 5.0s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(55) { --x: 25vw;  --dx:  9vw;  animation-duration: 6.9s, 3.8s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(56) { --x: 30vw;  --dx: -6vw;  animation-duration: 6.4s, 4.4s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(57) { --x: 35vw;  --dx:  12vw; animation-duration: 7.6s, 3.6s;  animation-delay: .3s, .2s; }
+  .confetti:nth-child(58) { --x: 40vw;  --dx: -9vw;  animation-duration: 6.6s, 4.1s;  animation-delay: .7s, .3s; }
+  .confetti:nth-child(59) { --x: 45vw;  --dx:  7vw;  animation-duration: 7.1s, 5.2s;  animation-delay: .1s, .0s; }
+  .confetti:nth-child(60) { --x: 50vw;  --dx: -11vw; animation-duration: 7.9s, 4.9s;  animation-delay: .5s, .1s; }
+  .confetti:nth-child(61) { --x: 55vw;  --dx:  8vw;  animation-duration: 6.8s, 3.7s;  animation-delay: .9s, .2s; }
+  .confetti:nth-child(62) { --x: 60vw;  --dx: -7vw;  animation-duration: 6.3s, 4.5s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(63) { --x: 65vw;  --dx:  11vw; animation-duration: 7.8s, 3.9s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(64) { --x: 70vw;  --dx: -10vw; animation-duration: 7.0s, 4.2s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(65) { --x: 75vw;  --dx:  6vw;  animation-duration: 6.7s, 4.0s;  animation-delay: .3s, .2s; }
+  .confetti:nth-child(66) { --x: 80vw;  --dx: -9vw;  animation-duration: 7.4s, 4.8s;  animation-delay: .7s, .3s; }
+  .confetti:nth-child(67) { --x: 85vw;  --dx:  9vw;  animation-duration: 6.5s, 3.9s;  animation-delay: .1s, .0s; }
+  .confetti:nth-child(68) { --x: 90vw;  --dx: -8vw;  animation-duration: 7.2s, 4.6s;  animation-delay: .5s, .1s; }
+  .confetti:nth-child(69) { --x: 95vw;  --dx:  10vw; animation-duration: 7.7s, 5.1s;  animation-delay: .9s, .2s; }
+  .confetti:nth-child(70) { --x: 2vw;   --dx: -6vw;  animation-duration: 6.2s, 3.8s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(71) { --x: 12vw;  --dx:  7vw;  animation-duration: 7.3s, 4.7s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(72) { --x: 22vw;  --dx: -11vw; animation-duration: 7.9s, 5.0s;  animation-delay: 1.0s, .1s;}
+  .confetti:nth-child(73) { --x: 32vw;  --dx:  8vw;  animation-duration: 6.6s, 3.6s;  animation-delay: .3s, .2s; }
+  .confetti:nth-child(74) { --x: 42vw;  --dx: -7vw;  animation-duration: 6.9s, 4.1s;  animation-delay: .7s, .3s; }
+  .confetti:nth-child(75) { --x: 52vw;  --dx:  12vw; animation-duration: 7.8s, 5.3s;  animation-delay: .1s, .0s; }
+  .confetti:nth-child(76) { --x: 62vw;  --dx: -9vw;  animation-duration: 6.8s, 4.4s;  animation-delay: .5s, .1s; }
+  .confetti:nth-child(77) { --x: 72vw;  --dx:  9vw;  animation-duration: 7.1s, 3.9s;  animation-delay: .9s, .2s; }
+  .confetti:nth-child(78) { --x: 82vw;  --dx: -10vw; animation-duration: 7.5s, 4.6s;  animation-delay: .2s, .3s; }
+  .confetti:nth-child(79) { --x: 92vw;  --dx:  6vw;  animation-duration: 6.4s, 4.0s;  animation-delay: .6s, .0s; }
+  .confetti:nth-child(80) { --x: 98vw;  --dx: -8vw;  animation-duration: 7.0s, 4.9s;  animation-delay: 1.0s, .1s;}
+
+  /* Gi hver bit en fargeklasse */
+  .confetti:nth-child(odd)     { border-radius: 50%; }
+  .confetti:nth-child(10n+1) { background:#FF4D4D; }
+  .confetti:nth-child(10n+2) { background:#FFB84D; }
+  .confetti:nth-child(10n+3) { background:#4DFF88; }
+  .confetti:nth-child(10n+4) { background:#4DB8FF; }
+  .confetti:nth-child(10n+5) { background:#B84DFF; }
+  .confetti:nth-child(10n+6) { background:#FF66CC; }
+  .confetti:nth-child(10n+7) { background:#FFD24D; }
+  .confetti:nth-child(10n+8) { background:#4DFFD2; }
+  .confetti:nth-child(10n+9) { background:#795548; }
+  .confetti:nth-child(10n+10){ background:#607d8b; }
+
+  /* her kan man redusere animasjon hvis man vil */
+  @media (prefers-reduced-motion: reduce){
+    .circle:hover{ animation:none; }
+    .confetti{ animation: none; opacity:.6; }
+  }
+
+  /* rundt 80% er med inspirasjon ifra AI her. Jeg har prøvd og feil veldig mye og fått mye hjelp ifra AI og 

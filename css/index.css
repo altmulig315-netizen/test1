@@ -1,0 +1,44 @@
+/* heile sia dekka 100% av sia*/
+html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      /*diskolys*/
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #ff6b6b, #4ecdc4, #ff9f43, #a8e6cf, #3d84a8, #ff6b8b, #6c5ce7, #00b894, #fd79a8, #0984e3);
+      background-size: 900% 900%;
+      animation: partyBG 10s ease infinite;
+      /*Sentrere alt*/
+      text-align: center;
+      font-family: "Comic Sans MS", cursive;
+      color: #fff;
+    }
+    /*dynamisk fargeeffekt*/
+    @keyframes partyBG {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+      
+    }
+    /*Forskjellige header*/
+    h1, h2 {
+      margin: 0.5em 0;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+    h1 {
+      font-size: 4em;
+    }
+    h2 {
+      font-size: 2.5em; 
+    }
+    /*bilder*/
+    img {
+      width: 350px;
+      max-width: 90%;
+      margin: 20px auto;
+      display: block;
+    }
+
+    /* her trengte jeg mye hjelp ifra AI for å skjønne hvordan ting hang sammen, så jeg har tatt mange ideer og såtte dem sammen
+    for å få til dette*/

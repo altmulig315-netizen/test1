@@ -1,0 +1,108 @@
+hmtl, body {
+    height: 100%;
+    margin: 0;                           /* Fjerner standard marger rundt siden */
+    padding: 0;                          /* Fjerner standard polstring rundt siden */
+}
+
+body {
+    background: linear-gradient(skyblue, green) no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "Chalkduster", fantasy; /* Skrifttype for hele siden */
+    width: 100%;                         /* Fyller hele bredden av skjermen */
+    min-height: 100vh;                       /* 100% av høyden på vinduet (viewport height) */
+    position: absolute;                  /* Posisjonerer alt i forhold til vinduet */
+    text-align: center;                  /* Midtstiller all tekst */
+
+}
+
+main {
+  background-color: tomato;            /* Rød-oransje bakgrunnsfarge */
+  width: 40%;                          /* Boksen tar 40% av bredden på skjermen */
+  margin: auto;                        /* Midtstiller boksen horisontalt */
+  position: relative;                  /* Gjør det mulig å plassere elementer inni mer presist */
+  border-radius: 5px;                  /* Runde hjørner på boksen */
+  margin-top: 50px;                    /* Skyver boksen 50 piksler ned fra toppen */
+}
+
+.hero-copy {
+  padding: 5px;                        /* Litt luft (innvendig avstand) rundt teksten */
+}
+
+#hero-img > figure > img {
+  border-radius: 10px;                 /* Gjør hjørnene på bildet runde */
+}
+
+footer {
+  background-color: rgba(70, 230, 6, 0.85);   /* Lys grønn farge på footer */
+  height: 300px;                        /* Gjør footeren 30 piksler høy */
+  width: 100%;                          /* Footeren dekker 50% av bredden på siden */
+  margin: auto;                        /* Midtstiller footeren horisontalt */
+  border-radius: 5px;                  /* Gjør kantene myke/runde */
+}
+
+footer > p {
+  padding: 37px;                       /* Luft mellom teksten og kantene (brukes hvis <p> finnes i footeren) */
+}
+
+h2 {
+  color: rgb(19, 52, 145);     
+  font-size:x-large;                   /* Hvit farge på overskrifter nivå 2 */
+}
+
+h3 {
+  color: rgb(56, 75, 41);                      /* Hvit farge på overskrifter nivå 3 */
+}
+
+ul {
+  color: rgb(255, 0, 157);             /* Bruker firkantede kuler i punktlister */
+}
+
+ol {
+  color:blueviolet             /* Bruker sirkulære kuler i nummererte lister */
+}
+
+div {
+  border: 1px solid;
+  text-align: center;
+}
+
+.line {
+  width: 50%;
+  margin: auto;
+  padding: 10px 0;
+  text-decoration: underline;
+}
+
+ul, ol {
+  border: 1px solid;
+  width: 60%;
+  margin: 20px auto;
+  padding: 15px;
+  text-align: center;
+  list-style-position: inside;
+  border-radius: 5px;
+}
+
+ul {
+  background-color: lightgreen;
+
+}
+
+ol {
+  background-color: skyblue;
+  color: white;
+
+}
+
+ul > ol {
+  text-decoration: underline wavy 3px brown;
+
+}
+
+ol > ul {
+  text-decoration: underline dotted 3px indigo;
+}
+
+
+/* Det er mange måter å gjøre ting på */
