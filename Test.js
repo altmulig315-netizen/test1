@@ -17,3 +17,8 @@ console.log("                     Total              9")
 console.log("=============================================")
 
 // Det er mange måter å gjøre ting på
+
+const track = document.querySelector(`.card-track`);
+if (track) {
+    track.innerHTML += track.innerHTML;
+}
