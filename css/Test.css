@@ -1,8 +1,12 @@
 /* ==========================================================
    🌎 GRUNNOPPSETT – Alt som gjelder hele siden
    ========================================================== */
-html, body {
+html {
   height: 100%;                  /* Sørger for at bakgrunnen dekker hele vinduet */
+  background: radial-gradient(circle at top left, #52458a, #0b725c);  
+  background-attachment: fixed;/* Bakgrunn med fargeovergang */
+  background-size: cover;
+  background-repeat: no-repeat;          /* Bakgrunnen dekker hele skjermen */
   margin: 0;                     /* Fjerner standard marger */
   padding: 0;                    /* Fjerner standard padding */
   font-family: sans-serif;       /* Standard skrifttype */
@@ -10,15 +14,23 @@ html, body {
 }
 
 body {
-   background: radial-gradient(circle at top left, #283e51, #485563); color: #f5f5f5; /* Bakgrunn med fargeovergang */
-  background-attachment: scroll;    /* Gjør at bakgrunnen sitter fast ved scroll */
-  background-size: 100% 100%;
-  background-repeat: no-repeat;          /* Bakgrunnen dekker hele skjermen */
-  font-family: "Chalkduster", fantasy; /* Spesiell skrifttype for stil */
+  background: transparent;    /* Gjør at bakgrunnen sitter fast ved scroll */
+  color: #f5f5f5;
+  font-family: "Chalkduster", fantasy;   
   width: 100%;                     /* Fyller hele bredden av skjermen */
   min-height: 100vh;               /* Dekker minst hele vinduets høyde */
   position: relative;              /* Lar deg posisjonere elementer absolutt inni */
   text-align: center;              /* Sentrerer all tekst som standard */
+}
+
+/* 🟢 Overstyring: Fjern uønsket kantlinje fra store seksjoner */
+main,
+section,
+.container,
+.card-container,
+.card-track,
+body > div {
+  border: none !important;
 }
 
 /* ==========================================================
@@ -61,10 +73,15 @@ ol {
   color: blueviolet;            /* Lilla nummerering */
 }
 
+/*
 div:not(.card) {
-  border: 1px solid;            /* Gir ramme på alle div’er unntatt .card */
+  border: 1px solid;            /* Gir ramme på alle div’er unntatt .card 
   text-align: center;
-}
+}*/
+
+.debug-border { 
+  border: 1px solid; /* Hjelpeklasse for å se elementgrenser */ 
+} 
 
 .line {
   width: 50%;                   /* Halv bredde */
@@ -102,6 +119,16 @@ ul > ol {
 ol > ul {
   text-decoration: underline dotted 3px indigo;
 }
+
+.contact-icons {
+  font-size: 2rem;
+  margin: 0 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
 
 /* ==========================================================
    🧩 KORT OG KARUSELL – Dynamisk bildekarusell
@@ -215,13 +242,15 @@ ol > ul {
 /* ==========================================================
    🟩 FOOTER – Nederst på siden
    ========================================================== */
+/*
 footer {
-  background-color: rgba(70, 230, 6, 0.85); /* Grønn bakgrunn */
-  height: 300px;               /* Fast høyde */
-  width: 100%;                 /* Full bredde */
+  background-color: rgba(70, 230, 6, 0.85); /* Grønn bakgrunn 
+  height: 300px;               /* Fast høyde 
+  width: 100%;                 /* Full bredde 
   margin: auto;
-  border-radius: 5px;          /* Runde hjørner */
+  border-radius: 5px;          /* Runde hjørner 
 }
+*/
 
 /* Tekst inni footeren */
 footer > p {
