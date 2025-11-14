@@ -75,7 +75,7 @@ ol {
 
 /*
 div:not(.card) {
-  border: 1px solid;            /* Gir ramme på alle div’er unntatt .card 
+  border: 1px solid;            /* Gir ramme på alle div'er unntatt .card 
   text-align: center;
 }*/
 
@@ -126,9 +126,6 @@ ol > ul {
   text-decoration: none;
   cursor: pointer;
 }
-
-
-
 
 /* ==========================================================
    🧩 KORT OG KARUSELL – Dynamisk bildekarusell
@@ -185,7 +182,7 @@ ol > ul {
   padding: 1rem;                 /* Luft rundt karusellen */
 }
 
-/* Selve “båndet” som inneholder kortene */
+/* Selve "båndet" som inneholder kortene */
 .card-track {
   display: flex;                 /* Legger kortene på rekke */
   gap: 1rem;                     /* Mellomrom mellom kort */
@@ -256,3 +253,52 @@ footer {
 footer > p {
   padding: 37px;               /* Luft mellom tekst og kant */
 }
+
+/*cyber relatert*/
+    /*body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 2rem auto;
+    }*/
+    
+    /* ▲ FORBEDRET RESULT-BOX MED BEDRE SYNLIGHET */
+    #result {
+      margin-top: 1rem;
+      padding: 1rem;              /* ▲ Mer padding for lesbarhet */
+      border: 2px solid #4CAF50;  /* ▲ Tydeligere grønn kant */
+      min-height: 3rem;           /* ▲ Større høyde */
+      background: #ffffff;        /* ▲ Helt hvit bakgrunn */
+      color: #000000;             /* ▲ Sikrer svart tekst */
+      white-space: pre-wrap;
+      border-radius: 5px;         /* ▲ Runde hjørner */
+      font-size: 1.2rem;          /* ▲ Større tekst */
+      font-weight: bold;          /* ▲ Fet tekst for synlighet */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* ▲ Skygge for dybde */
+    }
+    
+    /* ▲ STYLING FOR INPUT-FELT */
+    #cipherText {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 2px solid #2196F3;
+      border-radius: 5px;
+    }
+    
+    /* ▲ STYLING FOR SLIDER */
+    #key {
+      width: 50%;
+      height: 8px;
+      cursor: pointer;
+    }
+    
+    /* ▲ STYLING FOR LABEL-TEKST */
+    label {
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    
+    #keyValue {
+      color: #4CAF50;
+      font-size: 1.3rem;
+    }
