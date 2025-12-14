@@ -1,0 +1,325 @@
+/* ==========================================================
+   🌎 GRUNNOPPSETT – Alt som gjelder hele siden
+   ========================================================== */
+html {
+  height: 100%;                  /* Sørger for at bakgrunnen dekker hele vinduet */
+  background: radial-gradient(circle at top left, #52458a, #0b725c);  
+  background-attachment: fixed;/* Bakgrunn med fargeovergang */
+  background-size: cover;
+  background-repeat: no-repeat;          /* Bakgrunnen dekker hele skjermen */
+  margin: 0;                     /* Fjerner standard marger */
+  padding: 0;                    /* Fjerner standard padding */
+  font-family: sans-serif;       /* Standard skrifttype */
+  /*background: linear-gradient(skyblue, lightgreen); /* Enkel bakgrunnsfarge */
+}
+
+body {
+  background: transparent;    /* Gjør at bakgrunnen sitter fast ved scroll */
+  color: #f5f5f5;
+  font-family: "Chalkduster", fantasy;   
+  width: 100%;                     /* Fyller hele bredden av skjermen */
+  min-height: 100vh;               /* Dekker minst hele vinduets høyde */
+  position: relative;              /* Lar deg posisjonere elementer absolutt inni */
+  text-align: center;              /* Sentrerer all tekst som standard */
+}
+
+/* 🟢 Overstyring: Fjern uønsket kantlinje fra store seksjoner */
+main,
+section,
+.container,
+.card-container,
+.card-track,
+body > div {
+  border: none !important;
+}
+
+/* ==========================================================
+   🟥 MAIN-OMRÅDE – Sentrert boks i midten
+   ========================================================== */
+main {
+  /*background-color: tomato;     /* Farget boks */
+  width: 90%;                   /* Boksen tar 40% av skjermens bredde */
+  margin: auto;                 /* Midtstilles horisontalt */
+  position: relative;           /* Gjør intern posisjonering mulig */
+  border-radius: 5px;           /* Runde hjørner */
+  margin-top: 50px;             /* Skyver boksen litt ned fra toppen */
+}
+
+.hero-copy {
+  padding: 5px;                 /* Litt luft rundt teksten */
+}
+
+#hero-img > figure > img {
+  border-radius: 10px;          /* Runde hjørner på eventuelle bilder */
+}
+
+/* ==========================================================
+   ✍️ TEKSTSTILER – Farger, lister og overskrifter
+   ========================================================== */
+h2 {
+  color: rgb(19, 52, 145);      /* Mørk blå */
+  font-size: x-large;
+}
+
+h3 {
+  color: rgb(11, 12, 11);       /* Mørk grønn */
+}
+
+ul {
+  color: rgb(255, 0, 157);      /* Rosa punkter */
+}
+
+ol {
+  color: blueviolet;            /* Lilla nummerering */
+}
+
+/*
+div:not(.card) {
+  border: 1px solid;            /* Gir ramme på alle div'er unntatt .card 
+  text-align: center;
+}*/
+
+.debug-border { 
+  border: 1px solid; /* Hjelpeklasse for å se elementgrenser */ 
+} 
+
+.line {
+  width: 50%;                   /* Halv bredde */
+  margin: auto;
+  padding: 10px 0;
+  text-decoration: underline;   /* Understreket tekst */
+}
+
+/* Standard utseende på punkt- og nummerlister (mutet/behagelig palett) */
+ul, ol {
+  border: 1px solid #00000014; /* svak, nøytral kant (rgba(0,0,0,0.08) → #00000014) */
+  width: 60%;
+  margin: 20px auto;
+  padding: 15px;
+  text-align: center;
+  list-style-position: inside;  /* Plasserer punktene innenfor boksen */
+  border-radius: 5px;
+  box-shadow: 0 1px 4px #0000000a; /* lett skygge for dybde (rgba(0,0,0,0.04) → #0000000a) */
+}
+
+/* Fargebakgrunn på listene - dempet, mer behagelig */
+ul {
+  background-color: #dcdcdc;   /* lys mint */
+  color: #264d3a;              /* mørk, dempet grønn for tekst */
+  border-color: #d5ead8;       /* dempet kant */
+}
+
+ol {
+  background-color: #dcdcdc;   /* lys, dempet blå */
+  color: #123a47;              /* mørk, dempet blå for tekst */
+  border-color: #cfe8ef;       /* dempet kant */
+}
+
+/* Kombinerte liste-stiler for nested lister */
+ul > ol {
+  text-decoration: underline wavy 3px brown;
+}
+
+ol > ul {
+  text-decoration: underline dotted 3px indigo;
+}
+
+.contact-icons {
+  font-size: 2rem;
+  margin: 0 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ==========================================================
+   🧩 KORT OG KARUSELL – Dynamisk bildekarusell
+   ========================================================== */
+
+/* Bakgrunnslag (overlay) for kontrast over bildene */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent; /* Kan endres til mørk gradient ved behov */
+  z-index: 0;
+}
+
+.card h3, .card p {
+  position: relative; /* Sørger for at tekst ligger over bildet */
+  z-index: 1;
+  margin: 0;
+  /* dempet skygge (mindre «glow») for bedre lesbarhet uten støy */
+  text-shadow: 0.5px 0.5px 1px #0000002e; /* rgba(0,0,0,0.18) → #0000002e */
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Lenker over kortene (tilgjengelighet) */
+.card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-link:focus {
+  outline: 3px solid #ffffff80; /* rgba(255,255,255,0.5) → #ffffff80 */
+  border-radius: 8px;
+}
+
+/* Størrelse på kort i container */
+.card-container .card {
+  width: 300px;
+  max-width: 100%;
+}
+
+/* Beholder for karusellen */
+.card-container {
+  overflow-x: auto;              /* Lar deg scrolle horisontalt hvis nødvendig */
+  padding: 1rem;                 /* Luft rundt karusellen */
+}
+
+/* Selve "båndet" som inneholder kortene */
+.card-track {
+  display: flex;                 /* Legger kortene på rekke */
+  gap: 1rem;                     /* Mellomrom mellom kort */
+  align-items: stretch;          /* Alle kort like høye */
+  animation: slide-left 180s linear infinite; /* Bevegelse mot venstre */
+  width: max-content;            /* ⚠️ Sørger for at flex-elementene ikke brytes */
+}
+
+.card-container,
+.card-track {
+  border: none !important;
+}
+
+/* Hvert enkelt kort i karusellen */
+.card {
+  flex: 0 0 clamp(220px, 25vw, 400px);  /* ⚠️ Auto-skalering basert på skjermbredde */
+  height: 200px;              /* Høyden på hvert kort */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Jevn hover-animasjon */
+  position: relative;               /* For overlay og tekstlag */
+}
+
+/* Animasjon for bevegelse av karusellen */
+@keyframes slide-left {
+  0%   { transform: translateX(0); }        /* Startposisjon */
+  100% { transform: translateX(-50%); }     /* ⚠️ Flytter halvparten (for sømløs looping) */
+}
+
+/* Pause animasjonen når du holder musepekeren over */
+.card-track:hover {
+  animation-play-state: paused;
+}
+
+/* Zoom-effekt når man holder musepekeren over et kort */
+.card:hover { 
+  transform: scale(1.03);
+}
+
+/* Bilde i kort */
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;             /* Runde hjørner på bildene */
+}
+
+/* ==========================================================
+   🟩 FOOTER – Nederst på siden
+   ========================================================== */
+/*
+footer {
+  background-color: #46E606D8; /* Grønn bakgrunn (rgba(70,230,6,0.85) → #46E606D8) */
+  height: 300px;               /* Fast høyde */
+  width: 100%;                 /* Full bredde */
+  margin: auto;
+  border-radius: 5px;          /* Runde hjørner */
+}
+*/
+
+/* Tekst inni footeren */
+footer > p {
+  padding: 37px;               /* Luft mellom tekst og kant */
+}
+
+/*cyber relatert*/
+    /*body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 2rem auto;
+    }*/
+    
+    /* ▲ FORBEDRET RESULT-BOX MED BEDRE SYNLIGHET */
+    #result {
+      margin: 1rem auto;             /* ★ Sentrerer boksen horisontalt */
+      padding: 1rem;                 /* ▲ Mer padding for lesbarhet */
+      border: 2px solid #3ea36a;     /* ▲ Mykere grønn kant */
+      min-height: 3rem;              /* ▲ Større høyde */
+      background: #ffffff;           /* ▲ Helt hvit bakgrunn */
+      color: #000000;                /* ▲ Sikrer svart tekst */
+      white-space: pre-wrap;
+      border-radius: 5px;            /* ▲ Runde hjørner */
+      font-size: 1.2rem;             /* ▲ Større tekst */
+      font-weight: 600;              /* ▲ Kraftig, men ikke ekstremt fet */
+      box-shadow: 0 2px 8px #00000033; /* ▲ Skygge for dybde (rgba(0,0,0,0.2) → #00000033) */
+      width: min(50%, 900px);        /* ★ Responsiv bredde: 70% opp til 900px */
+      box-sizing: border-box;        /* ★ Inkluder padding i bredden */
+      text-align: left;              /* ★ Holder innhold venstrejustert for lesbarhet */
+    }
+
+    /* På veldig små skjermer bruker vi nesten full bredde */
+    @media (max-width: 520px) {
+      #result {
+        width: calc(100% - 2rem);
+        margin: 1rem auto;
+      }
+    }
+    
+    /* ▲ STYLING FOR INPUT-FELT */
+    #cipherText {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 2px solid #2196F3;
+      border-radius: 5px;
+    }
+    
+    /* ▲ STYLING FOR SLIDER (softer blue) */
+    #key {
+      width: 50%;
+      height: 8px;
+      cursor: pointer;
+      /* browsers will style slider differently; keep accents muted where possible */
+    }
+
+    /* soften primary blue accents used for inputs and focus states */
+    input[type="text"], input[type="range"] {
+      border-color: #2e86c1; /* softer blue */
+    }
+    
+    /* ▲ STYLING FOR LABEL-TEKST */
+    label {
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    
+    #keyValue {
+      color: #4CAF50;
+      font-size: 1.3rem;
+    }
