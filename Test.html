@@ -228,8 +228,46 @@
               </div> 
             </a> 
 
+              <!-- 
+              jeg må legge til disse her engang
+              https://mysterytwister.org/challenges
+              https://www.boxentriq.com/code-breaking/cipher-identifier
+              https://gchq.github.io/CyberChef/
+              https://www.exploit-db.com/                                      
+              https://null-byte.wonderhowto.com/         
+              https://www.nrk.no/spesial/inside-the-scam-network-1.17399135
+              https://www.nrk.no/spesial/the-hunt-for-darcula-1.17399157
+              https://leak-lookup.com/
+              https://ctftime.org/
+              CTFTIme	https://ctftime.org/
+              Leak-Lookup	https://leak-lookup.com/
+              Det som betyr noe	https://detsombetyrnoe.no/
+              Flipper Zero	https://flipperzero.one/
+              MysteryTwister	https://mysterytwister.org/challenges
+              Boxentriq – Cipher Identifier	https://www.boxentriq.com/code-breaking/cipher-identifier
+              CyberChef	https://gchq.github.io/CyberChef/
+              Exploit-DB	https://www.exploit-db.com/
+              Null Byte	https://null-byte.wonderhowto.com/
+
+              Cases, det går vell under nyheter det her.
+              NRK – Inside the Scam Network	https://www.nrk.no/spesial/inside-the-scam-network-1.17399135
+              NRK – The Hunt for Darcula	https://www.nrk.no/spesial/the-hunt-for-darcula-1.17399157
+
+
+
+
+              jobb
+              https://detsombetyrnoe.no/
+              https://www.politihogskolen.no/studier/master-etter-og-videreutdanninger/
+              -->
+
           </div>
         </div>
+        <div class="see-all-container">
+          <button id="seeAllBtn" class="see-all-btn" aria-haspopup="dialog" aria-controls="galleryModal">Se alle</button>
+        </div>
+        <!-- Inline gallery container (vises når bruker klikker "Se alle") -->
+        <div id="galleryInline" class="gallery-inline" aria-hidden="true" style="display:none"></div>
     </main>
 
     <header>
@@ -289,6 +327,14 @@
     <!-- ▲ Karusell-logikken er flyttet til Test.js for å samle JS ett sted -->
 
     <!-- Laster all egen JavaScript til slutt i body -->
+    <!-- Galleri-modal som viser alle kort/bilder når brukeren klikker "Se alle" -->
+    <div id="galleryModal" class="gallery-modal" role="dialog" aria-modal="true" aria-hidden="true" data-open="false">
+      <div class="gallery-content">
+        <button id="galleryClose" class="gallery-close" aria-label="Lukk">&times;</button>
+        <h2>Alle bilder</h2>
+        <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
+      </div>
+    </div>
     <script src="js/Test.js"></script>
 </body>
 </html>
