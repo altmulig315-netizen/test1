@@ -1,6 +1,8 @@
 // Test.js
-// Enkel Caesar-dekoder for å koble til elementene i Test.html
-// Bruker id-ene: cipherText, key, keyValue, result
+// Innhold:
+// - Caesar-dekoder (koblet til elementene i Test.html: cipherText, key, keyValue, result)
+// - Karusell-duplisering for sømløs auto-scroll
+// - "Se alle" inline-galleri rendret dynamisk fra karusellkort
 
 console.log("               WILLIAMS GRILL")
 console.log("---------------------------------------------")
@@ -32,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // Dekoder en tekst som er kryptert med Caesar (standard alfabet A-Z / a-z)
+  // Caesar-dekoder: dekoder tekst kryptert med skift over standard alfabet (A-Z / a-z)
   function caesarDecode(text, key) {
     // Sørg for 0 <= key < 26
     key = ((key % 26) + 26) % 26;
@@ -63,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return out;
   }
 
-  // Oppdater resultat når input endres
+  // Oppdater resultat når input endres (live)
   function update() {
     const key = parseInt(keyInput.value, 10) || 0;
     keyValue.textContent = String(key);
@@ -89,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Selvtest feil:', e);
   }
 
-  // Karusell: dupliser innholdet i .card-track for å muliggjøre sømløs loop
-  // (CSS-animasjonen flytter -50% i keyframes, så innhold må være dobbelt)
+  // Karusell: dupliser innholdet i .card-track for sømløs loop
+  // (CSS-animasjonen flytter -50% i keyframes, derfor trengs dobbelt innhold)
   (function setupCarouselDuplication() {
     const track = document.querySelector('.card-track');
     if (!track) return;
@@ -109,13 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
     track.dataset.duplicated = 'true';
   })();
 
-  // Se alle (inline gallery): render grid ONCE under karusellen og vis/ skjul dynamisk
+  // "Se alle" (inline-galleri): rendrer grid én gang under karusellen og viser/skjuler dynamisk
   (function setupGalleryInline() {
     const btn = document.getElementById('seeAllBtn');
     const inline = document.getElementById('galleryInline');
     if (!btn || !inline) return;
 
-    // create header and grid container inside inline wrapper lazily
+    // Lager header og grid-container inne i inline-wrapper ved behov (lazy)
     function renderGridOnce() {
       if (inline.dataset.rendered === 'true') return;
 
@@ -133,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
       grid.className = 'gallery-grid';
       grid.id = 'galleryGridInline';
 
-      // Populate with original .card-link items only (skip duplicates marked aria-hidden)
+      // Fyll med originale .card-link-elementer (hopp over duplikater merket aria-hidden)
       document.querySelectorAll('.card-track > .card-link').forEach(link => {
         if (link.getAttribute('aria-hidden') === 'true') return; // skip dupes
         const href = link.href;
@@ -178,14 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openInline() {
       renderGridOnce();
-      // skjul karusell, vis inline grid
+      // Skjul karusell, vis inline-grid
       const container = document.querySelector('.card-container');
       const seeAllContainer = document.querySelector('.see-all-container');
       if (container) container.style.display = 'none';
       if (seeAllContainer) seeAllContainer.style.display = 'none';
       inline.style.display = 'block';
       inline.setAttribute('aria-hidden', 'false');
-      // scroll to gallery
+      // Scroll til galleriet
       inline.scrollIntoView({ behavior: 'smooth' });
     }
 

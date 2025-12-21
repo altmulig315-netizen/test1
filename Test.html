@@ -11,11 +11,14 @@
 
 <body>
 
+  <!-- Sideoppsett: hovedinnhold (karusell og galleri), toppseksjon og modal -->
+
     <main>
         <section class="hero-copy">
             <h1>Opprettet 1.10.2025</h1>
         </section>
 
+        <!-- Karusell med lenkekort (auto-scroll; dupliseres i JS for sømløs loop) -->
         <div class="card-container">
           <div class="card-track">
 
@@ -404,48 +407,17 @@
               </div>
             </a>
 
-              <!-- 
-              jeg må legge til disse her engang
-              https://mysterytwister.org/challenges
-              https://www.boxentriq.com/code-breaking/cipher-identifier
-              https://gchq.github.io/CyberChef/
-              https://www.exploit-db.com/                                      
-              https://null-byte.wonderhowto.com/         
-              https://www.nrk.no/spesial/inside-the-scam-network-1.17399135
-              https://www.nrk.no/spesial/the-hunt-for-darcula-1.17399157
-              https://leak-lookup.com/
-              https://ctftime.org/
-              CTFTIme	https://ctftime.org/
-              Leak-Lookup	https://leak-lookup.com/
-              Det som betyr noe	https://detsombetyrnoe.no/
-              Flipper Zero	https://flipperzero.one/
-              MysteryTwister	https://mysterytwister.org/challenges
-              Boxentriq – Cipher Identifier	https://www.boxentriq.com/code-breaking/cipher-identifier
-              CyberChef	https://gchq.github.io/CyberChef/
-              Exploit-DB	https://www.exploit-db.com/
-              Null Byte	https://null-byte.wonderhowto.com/
-
-              Cases, det går vell under nyheter det her.
-              NRK – Inside the Scam Network	https://www.nrk.no/spesial/inside-the-scam-network-1.17399135
-              NRK – The Hunt for Darcula	https://www.nrk.no/spesial/the-hunt-for-darcula-1.17399157
-
-
-
-
-              jobb
-              https://detsombetyrnoe.no/
-              https://www.politihogskolen.no/studier/master-etter-og-videreutdanninger/
-              -->
-
           </div>
         </div>
+        <!-- "Se alle"-knapp som viser et inline-galleri under karusellen -->
         <div class="see-all-container">
           <button id="seeAllBtn" class="see-all-btn" aria-haspopup="dialog" aria-controls="galleryModal">Se alle</button>
         </div>
-        <!-- Inline gallery container (vises når bruker klikker "Se alle") -->
+        <!-- Inline-galleri som bygges og vises av JS ved klikk -->
         <div id="galleryInline" class="gallery-inline" aria-hidden="true" style="display:none"></div>
     </main>
 
+    <!-- Toppseksjon med bilde og Caesar-dekoder (demonstrasjon) -->
     <header>
         <img src="https://cdn.pixabay.com/photo/2017/10/16/23/02/brooklyn-2858985_960_720.png" alt="New York City Skyline" />
         <h2><b>Dette er min test side der alt er tillatt!</b></h2>
@@ -483,6 +455,7 @@
             </ol>
         </div>
 
+        <!-- Bildeområde med kontaktikoner -->
         <section id="hero-img">
             <figure>
                 <img src="https://news.harvard.edu/wp-content/uploads/2019/05/iStock-1551566882500.jpg" 
@@ -502,7 +475,6 @@
 
     <!-- ▲ Karusell-logikken er flyttet til Test.js for å samle JS ett sted -->
 
-    <!-- Laster all egen JavaScript til slutt i body -->
     <!-- Galleri-modal som viser alle kort/bilder når brukeren klikker "Se alle" -->
     <div id="galleryModal" class="gallery-modal" role="dialog" aria-modal="true" aria-hidden="true" data-open="false">
       <div class="gallery-content">
@@ -511,6 +483,7 @@
         <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
       </div>
     </div>
+    <!-- Laster all egen JavaScript til slutt i body for bedre ytelse -->
     <script src="js/Test.js"></script>
 </body>
 </html>
