@@ -140,7 +140,7 @@ ol > ul {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #00000000 45%, #000000cc 100%); /* Dempet mørk overlay for bedre kontrast */
+  background: linear-gradient(180deg, #0b1e2f00 38%, #0b1e2fcc 100%); /* Mørkere nederst for tydelig tekst uten å bli kullsvart */
   z-index: 0;
 }
 
@@ -148,19 +148,22 @@ ol > ul {
   position: relative; /* Sørger for at tekst ligger over bildet */
   z-index: 1;
   margin: 0;
-  color: #f7f9fb;
-  /* sterkere skygge for tydeligere kontrast over mørkt overlay */
-  text-shadow: 0 2px 4px #000000a6;
+  color: #fdfefe;
+  /* klar, men ikke blurry skygge for kontrast */
+  text-shadow: 0 1px 2px #00000088;
 }
 
 .card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.32rem;
+  font-weight: 600;
+  margin-bottom: 0.32rem;
+  color: #fdfefe !important; /* tving lys overskrift over global h3-farge */
 }
 
 .card p {
-  font-size: 1rem;
-  line-height: 1.4;
+  font-size: 1.08rem;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 /* Lenker over kortene (tilgjengelighet) */
