@@ -1,7 +1,8 @@
 // Test.js
-// Enkel Caesar-dekoder for å koble til elementene i Test.html
+// Enkel Caesar-dekoder + karusell/galleri-logikk for Test.html
 // Bruker id-ene: cipherText, key, keyValue, result
 
+// Demo-banner i konsollen (kan fjernes senere)
 console.log("               WILLIAMS GRILL")
 console.log("---------------------------------------------")
 console.log("               Order Details")
@@ -22,6 +23,7 @@ console.log("=============================================")
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Hent referanser til skjemaet for Caesar-dekoder
   const cipherInput = document.getElementById('cipherText');
   const keyInput = document.getElementById('key');
   const keyValue = document.getElementById('keyValue');
