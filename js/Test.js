@@ -156,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const inner = document.createElement('div');
         inner.className = 'featured-project-card gallery-card';
         if (style) inner.setAttribute('style', style);
+        if (title) inner.setAttribute('aria-label', title);
 
         const overlay = document.createElement('div');
         overlay.className = 'gallery-overlay';

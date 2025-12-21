@@ -1,0 +1,29 @@
+{
+  "name": "test1",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "lint:js": "eslint \"js/**/*.js\"",
+    "lint:css": "stylelint \"**/*.css\" --allow-empty-input",
+    "lint:html": "htmlhint \"**/*.html\"",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*.css": "stylelint --fix",
+    "*.html": "htmlhint"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.4.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "stylelint": "^16.7.0",
+    "stylelint-config-standard": "^36.0.0",
+    "htmlhint": "^1.1.4",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0"
+  }
+}
