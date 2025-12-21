@@ -140,7 +140,7 @@ ol > ul {
   content: "";
   position: absolute;
   inset: 0;
-  background: transparent; /* Kan endres til mørk gradient ved behov */
+  background: linear-gradient(180deg, #00000000 45%, #000000cc 100%); /* Dempet mørk overlay for bedre kontrast */
   z-index: 0;
 }
 
@@ -148,8 +148,9 @@ ol > ul {
   position: relative; /* Sørger for at tekst ligger over bildet */
   z-index: 1;
   margin: 0;
-  /* dempet skygge (mindre «glow») for bedre lesbarhet uten støy */
-  text-shadow: 0.5px 0.5px 1px #0000002e; /* rgba(0,0,0,0.18) → #0000002e */
+  color: #f7f9fb;
+  /* sterkere skygge for tydeligere kontrast over mørkt overlay */
+  text-shadow: 0 2px 4px #000000a6;
 }
 
 .card h3 {
