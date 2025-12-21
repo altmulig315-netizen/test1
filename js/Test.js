@@ -2,6 +2,25 @@
 // Enkel Caesar-dekoder for å koble til elementene i Test.html
 // Bruker id-ene: cipherText, key, keyValue, result
 
+console.log("               WILLIAMS GRILL")
+console.log("---------------------------------------------")
+console.log("               Order Details")
+
+console.log("---------------------------------------------")
+console.log(" Item,            Quantity,             Price")
+
+console.log("---------------------------------------------")
+
+console.log("Burger                1                 3")
+console.log("Soda                  1                 2")
+console.log("Fries                 1                 4")
+
+console.log("---------------------------------------------")
+console.log("                     Total              9")
+
+console.log("=============================================")
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const cipherInput = document.getElementById('cipherText');
   const keyInput = document.getElementById('key');
