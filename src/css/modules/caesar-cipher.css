@@ -490,6 +490,12 @@
   gap: var(--spacing-md);
 }
 
+@media (width <= 1200px) {
+  .freq-chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .freq-chart-subtitle {
   color: var(--color-text-muted);
   margin-bottom: var(--spacing-sm);
