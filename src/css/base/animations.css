@@ -1,10 +1,10 @@
-@keyframes slide-left {
+@keyframes scroll-left {
   0% {
     transform: translateX(0);
   }
 
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(var(--scroll-distance, 0px) * -1));
   }
 }
 
