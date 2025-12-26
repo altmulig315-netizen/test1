@@ -8,11 +8,11 @@
   border: 2px solid #00ffff4d;
 }
 
-.advanced-caesar-section h1 {
+.advanced-caesar-section h2 {
   color: var(--color-primary);
   text-align: center;
-  font-size: 2em;
-  text-shadow: 0 0 10px #0ffc;
+  font-size: 2.5em;
+  text-shadow: 0 0 10px #00ffff;
   margin-bottom: var(--spacing-sm);
 }
 
@@ -718,7 +718,7 @@ body.dark-mode .advanced-caesar-section {
 }
 
 .ngram-chip {
-  background: #000c;
+  /* background: #000c; */
   padding: 2px 6px;
   border-radius: 3px;
   color: var(--color-primary);

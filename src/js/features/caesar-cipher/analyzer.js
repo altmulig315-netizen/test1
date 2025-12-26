@@ -99,7 +99,7 @@ export class FrequencyAnalyzer {
   }
 
   updateNgramTable (text, n) {
-    const tableEl = document.getElementById('ngramTable')
+    const tableEl = document.getElementById('ngram-table')
     if (!tableEl) return
     const topNgrams = getTopNgrams(text, n, 10)
     if (topNgrams.length === 0) {
