@@ -1,0 +1,71 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  animation: titleGlow 3s ease-in-out infinite;
+  will-change: text-shadow;
+  transform: translateZ(0);
+}
+
+h2 {
+  color: var(--color-heading);
+  font-size: x-large;
+}
+
+h3 {
+  color: var(--color-heading-alt);
+}
+
+p {
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+ul,
+ol {
+  border: 1px solid #00000014;
+  width: 60%;
+  margin: var(--spacing-lg) auto;
+  padding: var(--spacing-md);
+  text-align: center;
+  list-style-position: inside;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 4px #0000001a;
+}
+
+ul {
+  background-color: var(--color-list-muted);
+  color: var(--color-list-ul);
+  border-color: #d5ead8;
+}
+
+ol {
+  background-color: var(--color-list-muted);
+  color: var(--color-list-ol);
+  border-color: #cfe8ef;
+}
+
+ul > ol {
+  text-decoration: underline wavy 3px brown;
+}
+
+ol > ul {
+  text-decoration: underline dotted 3px indigo;
+}
+
+.contact-icons {
+  font-size: 2rem;
+  margin: 0 var(--spacing-sm);
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.line {
+  width: 50%;
+  margin: auto;
+  padding: var(--spacing-sm) 0;
+  text-decoration: underline;
+}

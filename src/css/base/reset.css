@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+  background: radial-gradient(circle at top left, var(--color-gradient-start), var(--color-gradient-end));
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: var(--font-family-body);
+  color: var(--color-text);
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-family-body);
+  position: relative;
+  text-align: center;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: 3px solid var(--color-border-strong);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+main,
+section,
+.container,
+.card-container,
+.card-track,
+body > div {
+  border: none !important;
+}

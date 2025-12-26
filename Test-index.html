@@ -6,7 +6,7 @@
     <title>test</title>
 
     <!-- Kobling til ekstern CSS -->
-    <link rel="stylesheet" href="Test.css">
+    <link rel="stylesheet" href="src/css/Test-main.css">
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 
             <a href="https://www.virustotal.com/gui/home/upload" target="_blank" rel="noopener noreferrer" class="card-link">
               <div class="card card-bg-image">
-                <img src="images/Skjermbilde 2025-11-10 184022.png" alt="VirusTotal upload screenshot" class="card-img-cover" loading="lazy" />
+                <img src="images/Skjermbilde-2025-11-10-184022.png" alt="VirusTotal upload screenshot" class="card-img-cover" loading="lazy">
                 <h3>Virustotal</h3>
                 <p>Scan your documents.</p>
               </div>
@@ -468,14 +468,14 @@
 
     <!-- Toppseksjon med bilde og Caesar-dekoder (demonstrasjon) -->
     <header>
-        <img src="https://cdn.pixabay.com/photo/2017/10/16/23/02/brooklyn-2858985_960_720.png" alt="New York City Skyline" />
-        <h2><b>Dette er min test side der alt er tillatt!</b></h2>
-        <h3><u>Her kan jeg legge til hva enn jeg vil.</u></h3>
-        <p>men akkurat no handler det om å bestå eksamen, <br>og den skal jeg bestå samma faen.</p>
+      <img src="https://cdn.pixabay.com/photo/2017/10/16/23/02/brooklyn-2858985_960_720.png" alt="New York City Skyline">
+      <h2><b>Dette er min test side der alt er tillatt!</b></h2>
+      <h3><u>Her kan jeg legge til hva enn jeg vil.</u></h3>
+      <p>men akkurat no handler det om å bestå eksamen, <br>og den skal jeg bestå samma faen.</p>
 
         <!-- ▲ ADVANCED CAESAR CIPHER ANALYZER -->
         <div class="advanced-caesar-section">
-            <h1>🔐 ADVANCED CAESAR CIPHER ANALYZER</h1>
+          <h2>🔐 ADVANCED CAESAR CIPHER ANALYZER</h2>
             <p class="subtitle">Profesjonell Kryptoanalyseplattform</p>
             
             <!-- Chiffer-type forklaring -->
@@ -495,7 +495,7 @@
             
             <div class="controls-bar">
                 <!-- Dark mode toggle knapp -->
-                <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+                <button class="dark-mode-toggle" id="darkModeToggle">
                     <span>🌙 Dark Mode</span>
                 </button>
                 <div class="controls-bar-wrapper">
@@ -508,9 +508,9 @@
                 </div>
                 <!-- Hurtigknapper for ROT13/5/47 -->
                 <div class="cipher-controls">
-                    <button class="quick-btn" onclick="applyROT13()"><span>ROT13</span></button>
-                    <button class="quick-btn" onclick="applyROT5()"><span>ROT5</span></button>
-                    <button class="quick-btn" onclick="applyROT47()"><span>ROT47</span></button>
+                    <button class="quick-btn" id="rot13Btn"><span>ROT13</span></button>
+                    <button class="quick-btn" id="rot5Btn"><span>ROT5</span></button>
+                    <button class="quick-btn" id="rot47Btn"><span>ROT47</span></button>
                 </div>
             </div>
 
@@ -520,9 +520,9 @@
                 <div class="caesar-panel">
                     <h2 class="panel-title">📝 Input & Konfigurasjon</h2>
                     
-                    <div class="file-drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                    <div class="file-drop-zone" id="dropZone">
                         📁 Dra & slipp .txt-fil her eller klikk for å velge
-                        <input type="file" id="fileInput" accept=".txt" style="display: none;" onchange="handleFileUpload(event)">
+                        <input type="file" id="fileInput" accept=".txt" class="input-hidden">
                     </div>
 
                     <div class="input-group">
@@ -532,7 +532,7 @@
 
                     <div class="input-group">
                         <label for="alphabetType">Alfabet:</label>
-                        <select id="alphabetType" onchange="updateAlphabet(this.value)">
+                        <select id="alphabetType">
                             <option value="latin">Latin (A-Z)</option>
                             <option value="norwegian" selected>Norsk (A-ZÆØÅ)</option>
                             <option value="cyrillic">Kyrillisk</option>
@@ -552,12 +552,12 @@
                     </div>
 
                     <div class="button-grid">
-                        <button onclick="encrypt()"><span>🔒 Krypter</span></button>
-                        <button onclick="decrypt()"><span>🔓 Dekrypter</span></button>
-                        <button onclick="autoSolve()"><span>🤖 Auto-Solve</span></button>
-                        <button onclick="bruteForce()"><span>💥 Brute Force</span></button>
-                        <button onclick="copyToClipboard()"><span>📋 Kopier</span></button>
-                        <button onclick="exportResult()"><span>💾 Eksporter</span></button>
+                        <button id="encryptBtn"><span>🔒 Krypter</span></button>
+                        <button id="decryptBtn"><span>🔓 Dekrypter</span></button>
+                        <button id="autoSolveBtn"><span>🤖 Auto-Solve</span></button>
+                        <button id="bruteForceBtn"><span>💥 Brute Force</span></button>
+                        <button id="copyBtn"><span>📋 Kopier</span></button>
+                        <button id="exportBtn"><span>💾 Eksporter</span></button>
                     </div>
 
                     <div class="input-group">
@@ -572,7 +572,7 @@
                     
                     <div class="input-group">
                         <label for="ngramType">N-gram analyse:</label>
-                        <select id="ngramType" onchange="updateNgramAnalysis()">
+                        <select id="ngramType">
                             <option value="bigram">Bigrammer (2 bokstaver)</option>
                             <option value="trigram">Trigrammer (3 bokstaver)</option>
                             <option value="quadgram" selected>Quadgrammer (4 bokstaver) - Beste!</option>
@@ -584,13 +584,13 @@
 
                     <div class="input-group custom-alphabet-hidden" id="customNgramGroup">
                         <label for="customNgramLength">N-gram lengde (2-10):</label>
-                        <input type="number" id="customNgramLength" min="2" max="10" value="7" onchange="updateNgramAnalysis()">
+                        <input type="number" id="customNgramLength" min="2" max="10" value="7">
                     </div>
 
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-label">Topp N-gram</div>
-                            <div class="stat-value" id="topNgram" style="font-size: 1.2em;">-</div>
+                            <div class="stat-value stat-value-large" id="topNgram">-</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-label">N-gram Score</div>
@@ -621,7 +621,7 @@
                         </div>
                     </div>
 
-                    <button onclick="showAdvancedAnalysis()" class="substitution-apply-btn">
+                    <button id="advancedAnalysisBtn" class="substitution-apply-btn">
                         <span>🔬 Avansert Kryptoanalyse</span>
                     </button>
 
@@ -646,14 +646,14 @@
             </div>
 
             <!-- Advanced Cryptanalysis Panel -->
-            <div class="caesar-panel advanced-panel-hidden" id="advancedPanel">
+            <div class="caesar-panel advanced-panel-hidden" id="advanced-panel">
                 <h2 class="panel-title">🔬 Avansert Kryptoanalyse</h2>
                 
                 <!-- Cribs (Kjente ord) -->
                 <div class="input-group">
                     <label for="cribInput">🔑 Cribs - Kjente ord/fraser:</label>
                     <input type="text" id="cribInput" placeholder="Eks: 'hemmelig', 'viktig', 'konfidensiell'">
-                    <button onclick="searchCribs()" class="substitution-apply-btn">
+                    <button id="searchCribsBtn" class="substitution-apply-btn">
                         <span>🔍 Søk etter Cribs</span>
                     </button>
                 </div>
@@ -672,7 +672,7 @@
                             <div class="stat-value" id="hillBestScore">0.00</div>
                         </div>
                     </div>
-                    <button onclick="runHillClimbing()" class="substitution-apply-btn">
+                    <button id="hillClimbBtn" class="substitution-apply-btn">
                         <span>🚀 Kjør Hill Climbing</span>
                     </button>
                     <div id="hillClimbingResult" class="advanced-panel-result"></div>
@@ -681,7 +681,7 @@
                 <!-- Pattern Recognition -->
                 <div class="input-group advanced-panel-group">
                     <label>🔍 Mønstergjenkjenning:</label>
-                    <button onclick="runPatternRecognition()" class="substitution-apply-btn">
+                    <button id="patternBtn" class="substitution-apply-btn">
                         <span>🎯 Analyser Mønstre</span>
                     </button>
                     <div id="patternResults" class="advanced-panel-result"></div>
@@ -694,7 +694,7 @@
                         <div class="poly-detection-text">
                             Analyserer for Vigenère, Playfair, og andre komplekse chiffer...
                         </div>
-                        <button onclick="runPolyalphabeticTest()" class="substitution-apply-btn">
+                        <button id="polyTestBtn" class="substitution-apply-btn">
                             <span>🧪 Test Polyalfabetisk</span>
                         </button>
                     </div>
@@ -704,7 +704,7 @@
                 <!-- N-gram Frequency Table -->
                 <div class="input-group advanced-panel-group">
                     <label>📊 Top 10 N-grammer i teksten:</label>
-                    <div id="ngramTable" class="ngram-table-container"></div>
+                    <div id="ngram-ttable" class="ngram-table-container"></div>
                 </div>
             </div>
 
@@ -714,7 +714,7 @@
                 <div class="brute-force-grid" id="bruteForceResults"></div>
             </div>
 
-            <div class="caesar-panel" id="autoSolvePanel" style="display: none;">
+            <div class="caesar-panel auto-solve-hidden" id="auto-solve-panel">
                 <h2 class="panel-title">🎯 Auto-Solve Forslag</h2>
                 <div class="loading" id="autoSolveLoading">⚡ Analyserer med heuristisk algoritme...</div>
                 <div id="autoSolveResults"></div>
@@ -734,13 +734,13 @@
                 </div>
 
                 <div class="button-grid">
-                    <button onclick="autoSolveSubstitution()">
+                    <button id="autoSolveSubBtn">
                         <span>🤖 Auto-Løs Substitusjon</span>
                     </button>
-                    <button onclick="showSubstitutionMapping()">
+                    <button id="showMappingBtn">
                         <span>🗺️ Vis Mappingtabell</span>
                     </button>
-                    <button onclick="resetSubstitutionMapping()">
+                    <button id="resetMappingBtn">
                         <span>🔄 Reset Mapping</span>
                     </button>
                 </div>
@@ -749,13 +749,13 @@
 
                 <!-- Manual Substitution Mapping Table -->
                 <div id="substitutionMappingPanel" class="substitution-mapping-hidden">
-                    <h3 style="color: #00ffff; margin-bottom: 15px;">🗺️ Manuell Bokstavmapping</h3>
-                    <div style="background: #00000066; padding: 20px; border-radius: 8px;">
-                        <p style="color: #8892b0; margin-bottom: 15px;">
+                    <h3 class="substitution-mapping-title">🗺️ Manuell Bokstavmapping</h3>
+                    <div class="substitution-mapping-box">
+                        <p class="substitution-mapping-text">
                             Endre mappingen ved å klikke på en kryptert bokstav og velge klartext-bokstav:
                         </p>
-                        <div id="mappingTable" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px;"></div>
-                        <button onclick="applyManualMapping()" style="width: 100%; margin-top: 20px;">
+                        <div id="mappingTable" class="substitution-mapping-grid"></div>
+                        <button id="applyMappingBtn" class="substitution-apply-btn">
                             <span>✅ Anvend Mapping</span>
                         </button>
                     </div>
@@ -846,19 +846,17 @@
 
         <!-- Bildeområde med kontaktikoner -->
         <section id="hero-img">
-            <figure>
-                <img src="https://news.harvard.edu/wp-content/uploads/2019/05/iStock-1551566882500.jpg" 
-                     alt="Harvard campus aerial view" 
-                     style="width: 50%; height: auto;">
-                
-                <footer>
-                    <figcaption class="hero-copy">
-                      <a href="mailto:frankie@gmail.com" class="contact-icons">📧</a>
-                      <a href="tel:212-555-2368"         class="contact-icons">🤙</a>
-                      <a href="sms:320-250-HTML"         class="contact-icons">💬</a>
-                    </figcaption>
-                </footer>
-            </figure>
+          <h2 class="hero-img-heading">Kontakt</h2>
+          <figure>
+            <img src="https://news.harvard.edu/wp-content/uploads/2019/05/iStock-1551566882500.jpg" 
+               alt="Harvard campus aerial view" 
+               class="hero-main-image">
+            <figcaption class="hero-copy">
+              <a href="mailto:frankie@gmail.com" class="contact-icons">📧</a>
+              <a href="tel:212-555-2368"         class="contact-icons">🤙</a>
+              <a href="sms:320-250-HTML"         class="contact-icons">💬</a>
+            </figcaption>
+          </figure>
         </section>
     </header>
 
@@ -873,6 +871,6 @@
       </div>
     </div>
     <!-- Laster all egen JavaScript til slutt i body for bedre ytelse -->
-    <script src="js/Test.js"></script>
+    <script type="module" src="src/js/Test-main.js"></script>
 </body>
 </html>
