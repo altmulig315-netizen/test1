@@ -16,7 +16,7 @@ html {
 body {
   background: transparent;    /* Gjør at bakgrunnen sitter fast ved scroll */
   color: #f5f5f5;
-  font-family: "Chalkduster", fantasy;   
+  font-family: 'Courier New', monospace;   
   width: 100%;                     /* Fyller hele bredden av skjermen */
   min-height: 100vh;               /* Dekker minst hele vinduets høyde */
   position: relative;              /* Lar deg posisjonere elementer absolutt inni */
@@ -45,6 +45,512 @@ main {
   margin-top: 50px;             /* Skyver boksen litt ned fra toppen */
 }
 
+/* ==========================================================
+   🎨 KARUSELLKORT BAKGRUNNER
+   ========================================================== */
+.card-bg-dark {
+  background-color: #37474f;
+}
+
+.card-bg-image {
+  background-size: cover;
+  background-position: center;
+}
+
+/* ==========================================================
+   📦 DISPLAY OG SYNLIGHET
+   ========================================================== */
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-grid {
+  display: grid;
+}
+
+/* ==========================================================
+   🔧 INFO-BOKSER OG PANELS
+   ========================================================== */
+.info-box-spacing {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.info-box-substitution {
+  background: #ff6b6b1a;
+  border-color: #ff6b6b;
+}
+
+/* ==========================================================
+   📊 CUSTOM ALPHABET GROUP
+   ========================================================== */
+.custom-alphabet-hidden {
+  display: none;
+}
+
+/* ==========================================================
+   🎯 CONTROLS BAR ELEMENTS
+   ========================================================== */
+.controls-bar-select {
+  background: #00ffff1a;
+  border: 2px solid #00ffff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #00ffff;
+  cursor: pointer;
+}
+
+.controls-bar-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.controls-bar-label {
+  color: #00ffff;
+  font-size: 0.9em;
+}
+
+/* ==========================================================
+   📈 STAT CARD HINTS
+   ========================================================== */
+.stat-hint-text {
+  font-size: 0.7em;
+  color: #8892b0;
+  margin-top: 5px;
+}
+
+/* ==========================================================
+   🔬 ADVANCED PANEL ELEMENTS
+   ========================================================== */
+.advanced-panel-hidden {
+  display: none;
+}
+
+.advanced-panel-group {
+  margin-top: 25px;
+}
+
+.advanced-panel-result {
+  margin-top: 15px;
+}
+
+.poly-detection-box {
+  background: #00000066;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.poly-detection-text {
+  color: #8892b0;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.ngram-table-container {
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* ==========================================================
+   💥 BRUTE FORCE PANEL
+   ========================================================== */
+.brute-force-hidden {
+  display: none;
+}
+
+.brute-force-loading {
+  text-align: center;
+  color: #00ffff;
+  padding: 20px;
+  font-size: 1.2em;
+}
+
+/* ==========================================================
+   🎯 AUTO SOLVE PANEL
+   ========================================================== */
+.auto-solve-hidden {
+  display: none;
+}
+
+.auto-solve-loading {
+  text-align: center;
+  color: #00ffff;
+  padding: 20px;
+  font-size: 1.2em;
+}
+
+/* ==========================================================
+   🗺️ SUBSTITUTION MAPPING
+   ========================================================== */
+.substitution-mapping-hidden {
+  display: none;
+}
+
+.substitution-mapping-visible {
+  display: block;
+  margin-top: 25px;
+}
+
+.substitution-title {
+  color: #00ffff;
+  margin-bottom: 15px;
+}
+
+.substitution-mapping-box {
+  background: #00000066;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.substitution-mapping-text {
+  color: #8892b0;
+  margin-bottom: 15px;
+}
+
+.substitution-mapping-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.substitution-apply-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* ==========================================================
+   📊 FREQUENCY CHARTS
+   ========================================================== */
+.freq-chart-container {
+  margin-top: 25px;
+}
+
+.freq-chart-title {
+  color: #00ffff;
+  margin-bottom: 15px;
+}
+
+.freq-chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.freq-chart-subtitle {
+  color: #8892b0;
+  margin-bottom: 10px;
+}
+
+.freq-chart-box {
+  background: #00000066;
+  padding: 15px;
+  border-radius: 8px;
+  min-height: 200px;
+}
+
+/* ==========================================================
+   🎨 SUBSTITUTION RESULT
+   ========================================================== */
+.substitution-result-spacing {
+  margin-top: 20px;
+}
+
+/* ==========================================================
+   💻 JS-GENERERTE ELEMENTER
+   ========================================================== */
+
+/* Gallery inline header */
+.gallery-inline-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  color: #fff;
+}
+
+.gallery-inline-header-h2 {
+  margin: 0;
+}
+
+/* Gallery inline wrapper open */
+.gallery-inline-visible {
+  width: 100%;
+  padding: 2rem 3rem;
+  box-sizing: border-box;
+  background: transparent;
+  display: block;
+}
+
+/* Featured project card */
+.featured-project-card {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: block;
+  position: relative;
+}
+
+/* Auto solve card padding */
+.auto-solve-card-result {
+  padding: 20px;
+  background: #00ffff1a;
+  border-radius: 8px;
+  border: 2px solid #51cf66;
+}
+
+.auto-solve-card-text {
+  font-size: 1.2em;
+}
+
+/* Analysis report */
+.analysis-report-box {
+  background: #00000066;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.analysis-report-title {
+  color: #00ffff;
+  margin-bottom: 15px;
+}
+
+.analysis-report-content {
+  color: #e0e0e0;
+  line-height: 1.8;
+}
+
+/* Warning box */
+.warning-box {
+  background: #ff6b6b33;
+  border: 2px solid #ff6b6b;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* Auto solve result card */
+.auto-solve-result-card {
+  background: #1a1a2e;
+  border: 2px solid #51cf66;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.auto-solve-result-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 0 20px #00ffff66;
+}
+
+/* Confidence badge */
+.confidence-badge-custom {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.confidence-badge-recommended {
+  background: #51cf6633;
+  color: #51cf66;
+}
+
+.confidence-badge-alternative {
+  background: #8892b033;
+  color: #8892b0;
+}
+
+/* Result shift label */
+.result-shift-label {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #00ffff;
+}
+
+/* Result text truncated */
+.result-text-truncated {
+  margin-top: 10px;
+}
+
+/* Result metadata */
+.result-metadata {
+  margin-top: 10px;
+  font-size: 0.8em;
+  color: #8892b0;
+}
+
+/* Explanation box */
+.explanation-box {
+  background: #667eea22;
+  border: 2px solid #667eea;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* Center text */
+.text-center {
+  text-align: center;
+}
+
+/* Margin top spacing */
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+/* Brute force result card */
+.brute-result-card-clickable {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.brute-result-card-clickable:hover {
+  background: #00ffff1a;
+  border-left-color: #ff6b6b;
+  transform: translateX(5px);
+}
+
+/* Padding utility */
+.p-20 {
+  padding: 20px;
+}
+
+/* Color utilities */
+.color-cyan {
+  color: #00ffff;
+}
+
+.color-white {
+  color: #ffffff;
+}
+
+.color-muted {
+  color: #8892b0;
+}
+
+/* Width utilities */
+.w-100 {
+  width: 100%;
+}
+
+/* Margin bottom */
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+/* Font sizes */
+.fs-12 {
+  font-size: 1.2em;
+}
+
+/* Substitution mapping cell */
+.substitution-cell {
+  background: #00000099;
+  padding: 10px;
+  border: 2px solid #00ffff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.substitution-cell-label {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.substitution-cell-arrow {
+  color: #8892b0;
+}
+
+.substitution-cell-input {
+  width: 30px;
+  text-align: center;
+  background: #000000cc;
+  border: 1px solid #00ffff;
+  color: #51cf66;
+  padding: 5px;
+}
+
+/* Frequency chart items */
+.freq-chart-item {
+  margin: 5px 0;
+}
+
+.freq-chart-letter {
+  color: #00ffff;
+  font-weight: bold;
+}
+
+.freq-chart-letter-norwegian {
+  color: #51cf66;
+  font-weight: bold;
+}
+
+.freq-chart-percent {
+  color: #ffffff;
+}
+
+.freq-chart-bar {
+  height: 8px;
+  border-radius: 4px;
+  margin-top: 3px;
+}
+
+.freq-chart-bar-cyan {
+  background: #00ffff;
+}
+
+.freq-chart-bar-green {
+  background: #51cf66;
+}
+
+/* Bar container for frequency charts */
+.bar-container-flex {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.bar-fill {
+  width: 100%;
+  background: linear-gradient(to top, #00ffff, #00ffff80);
+  border-radius: 3px 3px 0 0;
+  min-height: 2px;
+}
+
+.bar-label-styled {
+  color: #8892b0;
+  font-size: 0.7em;
+}
+
 .hero-copy {
   padding: 5px;                 /* Litt luft rundt teksten */
 }
@@ -56,6 +562,12 @@ main {
 /* ==========================================================
    ✍️ TEKSTSTILER – Farger, lister og overskrifter
    ========================================================== */
+h1, h2, h3, h4, h5, h6 {
+  animation: titleGlow 3s ease-in-out infinite;
+  will-change: text-shadow;           /* Hint til nettleseren for GPU-akselerering */
+  transform: translateZ(0);           /* Tvinger GPU-rendering */
+}
+
 h2 {
   color: #133491;      /* Mørk blå */
   font-size: x-large;
@@ -92,14 +604,14 @@ div:not(.card) {
 
 /* Standard utseende på punkt- og nummerlister (mutet/behagelig palett) */
 ul, ol {
-  border: 1px solid #00000014; /* svak, nøytral kant (rgba(0,0,0,0.08) → #00000014) */
+  border: 1px solid #00000014; /* svak, nøytral kant */
   width: 60%;
   margin: 20px auto;
   padding: 15px;
   text-align: center;
   list-style-position: inside;  /* Plasserer punktene innenfor boksen */
   border-radius: 5px;
-  box-shadow: 0 1px 4px #0000000a; /* lett skygge for dybde (rgba(0,0,0,0.04) → #0000000a) */
+  box-shadow: 0 1px 4px #0000000a; /* lett skygge for dybde */
 }
 
 /* Fargebakgrunn på listene - dempet, mer behagelig */
@@ -174,7 +686,7 @@ ol > ul {
 }
 
 .card-link:focus {
-  outline: 3px solid #ffffff80; /* rgba(255,255,255,0.5) → #ffffff80 */
+  outline: 3px solid #ffffff80; /* hex med 50% opacity */
   border-radius: 8px;
 }
 
@@ -186,17 +698,20 @@ ol > ul {
 
 /* Beholder for karusellen */
 .card-container {
-  overflow-x: auto;              /* Lar deg scrolle horisontalt hvis nødvendig */
-  padding: 1rem;                 /* Luft rundt karusellen */
+  overflow-x: auto;                 /* Lar deg scrolle horisontalt hvis nødvendig */
+  padding: 1rem;                    /* Luft rundt karusellen */
+  contain: layout style paint;      /* Isolerer rendering for bedre ytelse */
 }
 
 /* Selve "båndet" som inneholder kortene */
 .card-track {
-  display: flex;                 /* Legger kortene på rekke */
-  gap: 1rem;                     /* Mellomrom mellom kort */
-  align-items: stretch;          /* Alle kort like høye */
+  display: flex;                    /* Legger kortene på rekke */
+  gap: 1rem;                        /* Mellomrom mellom kort */
+  align-items: stretch;             /* Alle kort like høye */
   animation: slide-left 180s linear infinite; /* Bevegelse mot venstre */
-  width: max-content;            /* ⚠️ Sørger for at flex-elementene ikke brytes */
+  width: max-content;               /* ⚠️ Sørger for at flex-elementene ikke brytes */
+  will-change: transform;           /* Hint for GPU-akselerering */
+  backface-visibility: hidden;      /* Reduserer rendering overhead */
 }
 
 .card-container,
@@ -207,7 +722,7 @@ ol > ul {
 /* Hvert enkelt kort i karusellen */
 .card {
   flex: 0 0 clamp(220px, 25vw, 400px);  /* ⚠️ Auto-skalering basert på skjermbredde */
-  height: 200px;              /* Høyden på hvert kort */
+  height: 200px;                    /* Høyden på hvert kort */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -216,8 +731,10 @@ ol > ul {
   background-size: cover;
   background-position: center;
   border-radius: 8px;
-  transition: transform 0.3s ease; /* Jevn hover-animasjon */
+  transition: transform 0.3s ease;  /* Jevn hover-animasjon */
   position: relative;               /* For overlay og tekstlag */
+  contain: layout paint;            /* Isolerer rendering */
+  will-change: transform;           /* GPU hint for hover-effekt */
 }
 
 /* Animasjon for bevegelse av karusellen */
@@ -226,33 +743,54 @@ ol > ul {
   100% { transform: translateX(-50%); }     /* ⚠️ Flytter halvparten (for sømløs looping) */
 }
 
+/* ==========================================================
+   ✨ ANIMASJONER - Keyframe definisjoner
+   ========================================================== */
+
+/* Animasjon for overskrifter med pulserende cyan glow-effekt (optimalisert) */
+@keyframes titleGlow {
+  0%, 100% { 
+    /* Start og slutt: Medium glow (forenklet til 1 lag) */
+    text-shadow: 0 0 15px #00ffff80;
+  }
+  50% { 
+    /* Midt i animasjonen: Sterk glow (forenklet til 2 lag) */
+    text-shadow: 0 0 25px #00ffffcc, 0 0 40px #00ffff66;
+  }
+}
+
+/* Pause animasjonen når du holder musepekeren over */
 /* Pause animasjonen når du holder musepekeren over */
 .card-track:hover {
-  animation-play-state: paused;
+  animation-play-state: paused;     /* Stopper animasjonen midlertidig */
 }
 
 /* Zoom-effekt når man holder musepekeren over et kort */
 .card:hover { 
-  transform: scale(1.03);
+  transform: scale(1.03);           /* Zoom inn 3% */
 }
+
+/* ==========================================================
+   🖼️ KORTBILDER - Bilder i kortkarusellen
+   ========================================================== */
 
 /* Bilde i kort */
 .card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;             /* Runde hjørner på bildene */
+  width: 100%;                      /* Full bredde av kortet */
+  height: auto;                     /* Automatisk høyde for å beholde aspect ratio */
+  display: block;                   /* Fjern spacing under bildet */
+  border-radius: 8px;               /* Runde hjørner på bildene */
 }
 
 /* Bilde som brukes som bakgrunn i kort (dekker hele kortet) */
 .card .card-img-cover {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-  z-index: 0;
+  position: absolute;               /* Absolutt posisjon inni kortet */
+  inset: 0;                         /* Dekker hele kortet (topp, høyre, bunn, venstre = 0) */
+  width: 100%;                      /* Full bredde */
+  height: 100%;                     /* Full høyde */
+  object-fit: cover;                /* Dekker hele området uten å forvrenge */
+  border-radius: 8px;               /* Runde hjørner */
+  z-index: 0;                       /* Bak annet innhold */
 } 
 
 /* ==========================================================
@@ -273,71 +811,69 @@ footer > p {
   padding: 37px;               /* Luft mellom tekst og kant */
 }
 
-/*cyber relatert*/
-    /*body {
-      font-family: sans-serif;
-      max-width: 600px;
-      margin: 2rem auto;
-    }*/
-    
-    /* ▲ FORBEDRET RESULT-BOX MED BEDRE SYNLIGHET */
-    #result {
-      margin: 1rem auto;             /* ★ Sentrerer boksen horisontalt */
-      padding: 1rem;                 /* ▲ Mer padding for lesbarhet */
-      border: 2px solid #3ea36a;     /* ▲ Mykere grønn kant */
-      min-height: 3rem;              /* ▲ Større høyde */
-      background: #ffffff;           /* ▲ Helt hvit bakgrunn */
-      color: #000000;                /* ▲ Sikrer svart tekst */
-      white-space: pre-wrap;
-      border-radius: 5px;            /* ▲ Runde hjørner */
-      font-size: 1.2rem;             /* ▲ Større tekst */
-      font-weight: 600;              /* ▲ Kraftig, men ikke ekstremt fet */
-      box-shadow: 0 2px 8px #00000033; /* ▲ Skygge for dybde (rgba(0,0,0,0.2) → #00000033) */
-      width: min(50%, 900px);        /* ★ Responsiv bredde: 70% opp til 900px */
-      box-sizing: border-box;        /* ★ Inkluder padding i bredden */
-      text-align: left;              /* ★ Holder innhold venstrejustert for lesbarhet */
-    }
+/* ==========================================================
+   🔐 CAESAR DEKODER - Legacy Caesar cipher verktøy
+   ========================================================== */
 
-    /* På veldig små skjermer bruker vi nesten full bredde */
-    @media (max-width: 520px) {
-      #result {
-        width: calc(100% - 2rem);
-        margin: 1rem auto;
-      }
-    }
-    
-    /* ▲ STYLING FOR INPUT-FELT */
-    #cipherText {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: 2px solid #2196F3;
-      border-radius: 5px;
-    }
-    
-    /* ▲ STYLING FOR SLIDER (softer blue) */
-    #key {
-      width: 50%;
-      height: 8px;
-      cursor: pointer;
-      /* browsers will style slider differently; keep accents muted where possible */
-    }
+/* FORBEDRET RESULT-BOX MED BEDRE SYNLIGHET */
+#result {
+  margin: 1rem auto;                /* Sentrerer boksen horisontalt */
+  padding: 1rem;                    /* Mer padding for lesbarhet */
+  border: 2px solid #3ea36a;        /* Mykere grønn kant */
+  min-height: 3rem;                 /* Større høyde */
+  background: #ffffff;              /* Helt hvit bakgrunn */
+  color: #000000;                   /* Sikrer svart tekst */
+  white-space: pre-wrap;            /* Behold linjeskift */
+  border-radius: 5px;               /* Runde hjørner */
+  font-size: 1.2rem;                /* Større tekst */
+  font-weight: 600;                 /* Kraftig, men ikke ekstremt fet */
+  box-shadow: 0 2px 8px #00000033;  /* Skygge for dybde */
+  width: min(30%, 900px);           /* Responsiv bredde: 70% opp til 900px */
+  box-sizing: border-box;           /* Inkluder padding i bredden */
+  text-align: left;                 /* Holder innhold venstrejustert for lesbarhet */
+}
 
-    /* soften primary blue accents used for inputs and focus states */
-    input[type="text"], input[type="range"] {
-      border-color: #2e86c1; /* softer blue */
-    }
+/* På veldig små skjermer bruker vi nesten full bredde */
+@media (max-width: 520px) {
+  #result {
+    width: calc(100% - 2rem);       /* Full bredde minus marger */
+    margin: 1rem auto;              /* Vertikal og horisontal margin */
+  }
+}
     
-    /* ▲ STYLING FOR LABEL-TEKST */
-    label {
-      color: #fff;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
+/* STYLING FOR INPUT-FELT (Caesar cipher tekst) */
+#cipherText {
+  padding: 0.5rem;                  /* Indre avstand */
+  font-size: 1rem;                  /* Skriftstørrelse */
+  border: 2px solid #2196F3;        /* Blå kant */
+  border-radius: 5px;               /* Runde hjørner */
+}
+
+/* STYLING FOR SLIDER (shift value) */
+#key {
+  width: 30%;                       /* 30% av container bredde */
+  height: 8px;                      /* Høyde på slideren */
+  cursor: pointer;                  /* Håndpeker ved hover */
+}
+
+/* Soften primary blue accents for inputs */
+input[type="text"], input[type="range"] {
+  border-color: #2e86c1;            /* Mykere blå kantfarge */
+}
     
-    #keyValue {
-      color: #4CAF50;
-      font-size: 1.3rem;
-    }
+/* STYLING FOR LABEL-TEKST (Caesar decoder) */
+label {
+  color: #fff;                      /* Hvit tekst */
+  font-weight: bold;                /* Fet skrift */
+  font-size: 1.1rem;                /* Skriftstørrelse */
+  text-align: left;                 /* Venstrejustert */
+}
+
+/* Visning av nåværende shift-verdi */
+#keyValue {
+  color: #4CAF50;                   /* Grønn farge */
+  font-size: 1.3rem;                /* Stor skrift */
+}
 
 /* ==========================================================
    ✨ SE ALL / GALLERY STYLES
@@ -361,7 +897,7 @@ footer > p {
   display: none; /* skjult som standard */
   position: fixed;
   inset: 0;
-  background: #00000099;
+  background: #00000099; /* svart med 60% opacity */
   z-index: 9999;
   align-items: center;
   justify-content: center;
@@ -380,7 +916,7 @@ footer > p {
   overflow: auto;
   border-radius: 8px;
   padding: 1rem 1.25rem 2rem;
-  box-shadow: 0 6px 30px #00000044;
+  box-shadow: 0 6px 30px #00000044; /* svart med 27% opacity */
   position: relative;
 }
 
@@ -397,7 +933,7 @@ footer > p {
   overflow: hidden;
   display: block;
   position: relative;
-  box-shadow: 0 2px 8px #00000020;
+  box-shadow: 0 2px 8px #00000020; /* svart med 13% opacity */
 }
 
 .gallery-card {
@@ -413,7 +949,7 @@ footer > p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, #00000000 0%, #00000099 100%);
+  background: linear-gradient(180deg, #00000000 0%, #00000099 100%); /* transparent til 60% svart */
   color: #fff;
   padding: 0.6rem;
   text-align: left;
@@ -441,7 +977,7 @@ footer > p {
 
 .collapse-btn {
   background: transparent;
-  border: 1px solid #ffffff1f;
+  border: 1px solid #ffffff1f; /* hvit med 12% opacity */
   color: #fff;
   padding: 0.45rem 0.8rem;
   border-radius: 6px;
@@ -464,4 +1000,869 @@ footer > p {
   color: #333;
   font-size: 1.6rem;
   cursor: pointer;
+}
+
+/* ==========================================================
+   🔒 PASSWORD CHECKER STYLES
+   ========================================================== */
+
+/* Container for password checker - white box with shadow */
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px #0000004d;
+    max-width: 450px;
+    width: 90%;
+    margin: 40px auto;
+}
+
+/* Style h1 only inside password checker container */
+.container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.container .input-group {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.container .char-count {
+    text-align: right;
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 25px;
+    padding-right: 5px;
+}
+
+.container input[type="password"],
+.container input[type="text"] {
+    width: 80%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    padding-right: 50px;
+}
+
+.container input[type="password"]:focus,
+.container input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.container .toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    font-size: 20px;
+    user-select: none;
+}
+
+/* Strength meter container */
+.container .strength-meter {
+    margin-bottom: 30px;            /* Avstand under */
+}
+
+/* Label over strength meter (tekst og prosent) */
+.container .strength-label {
+    display: flex;                  /* Flexbox layout */
+    justify-content: space-between; /* Fordel tekst til hver side */
+    margin-bottom: 8px;             /* Avstand under */
+    font-size: 14px;                /* Skriftstørrelse */
+    color: #666;                    /* Grå farge */
+}
+
+/* Styrke-tekst ("Weak", "Strong" osv) */
+.container .strength-text {
+    font-weight: bold;              /* Fet tekst */
+}
+
+/* Bakgrunn for strength meter bar */
+.container .meter-bar {
+    height: 8px;                    /* Høyde på meter */
+    background: #e0e0e0;            /* Lys grå bakgrunn */
+    border-radius: 10px;            /* Runde hjørner */
+    overflow: hidden;               /* Skjul overflow */
+    position: relative;             /* For absolutt posisjonering av fill */
+}
+
+/* Fylling i strength meter (animert) */
+.container .meter-fill {
+    height: 100%;                   /* Full høyde */
+    width: 0%;                      /* Starter på 0% */
+    transition: width 0.3s, background-color 0.3s; /* Myk overgang */
+    border-radius: 10px;            /* Runde hjørner */
+}
+
+/* Weak password styling (rød) */
+.container .meter-fill.weak {
+    width: 25%;                     /* 25% fylling */
+    background: linear-gradient(90deg, #ff4757, #ff6b81); /* Rød gradient */
+}
+
+/* Fair password styling (oransje) */
+.container .meter-fill.fair {
+    width: 50%;                     /* 50% fylling */
+    background: linear-gradient(90deg, #00ffff); /* Oransje gradient */
+}
+
+/* Good password styling (blå) */
+.container .meter-fill.good {
+    width: 75%;                     /* 75% fylling */
+    background: linear-gradient(90deg, #1e90ff, #5dade2); /* Blå gradient */
+}
+
+/* Strong password styling (grønn) */
+.container .meter-fill.strong {
+    width: 100%;                    /* 100% fylling */
+    background: linear-gradient(90deg, #2ecc71, #27ae60); /* Grønn gradient */
+}
+
+/* Container for passord-krav liste */
+.container .requirements {
+    background: #f8f9fa;            /* Lys grå bakgrunn */
+    padding: 20px;                  /* Indre avstand */
+    border-radius: 10px;            /* Runde hjørner */
+}
+
+/* Overskrift for krav-seksjon */
+.container .requirements h3 {
+    font-size: 16px;                /* Skriftstørrelse */
+    color: #333;                    /* Mørk grå */
+    margin-bottom: 15px;            /* Avstand under */
+}
+
+/* Enkelt krav (f.eks. "8+ characters") */
+.container .requirement {
+    display: flex;                  /* Flexbox for ikon og tekst */
+    align-items: center;            /* Sentrer vertikalt */
+    margin-bottom: 10px;            /* Avstand under */
+    font-size: 14px;                /* Skriftstørrelse */
+    color: #666;                    /* Grå farge (ikke oppfylt) */
+    transition: color 0.3s;         /* Myk overgang */
+}
+
+/* Ikon foran hvert krav */
+.container .requirement .icon {
+    width: 20px;                    /* Bredde */
+    height: 20px;                   /* Høyde */
+    border-radius: 50%;             /* Rund sirkel */
+    border: 2px solid #ddd;         /* Lys grå kant (ikke oppfylt) */
+    margin-right: 10px;             /* Avstand til tekst */
+    display: flex;                  /* Flexbox for sjekkmerke */
+    align-items: center;            /* Sentrer vertikalt */
+    justify-content: center;        /* Sentrer horisontalt */
+    font-size: 12px;                /* Skriftstørrelse for sjekkmerke */
+    transition: all 0.3s;           /* Myk overgang */
+}
+
+/* Oppfylt krav (grønn) */
+.container .requirement.met {
+    color: #2ecc71;                 /* Grønn tekst */
+}
+
+/* Ikon for oppfylt krav */
+.container .requirement.met .icon {
+    background: #2ecc71;            /* Grønn bakgrunn */
+    border-color: #2ecc71;          /* Grønn kant */
+    color: white;                   /* Hvit sjekkmerke */
+}
+
+/* Sjekkmerke for oppfylt krav */
+.container .requirement.met .icon::before {
+    content: "✓";                   /* Unicode sjekkmerke */
+}
+
+/* ==========================================================
+   🔐 ADVANCED CAESAR CIPHER ANALYZER STYLES
+   ========================================================== */
+
+/* Hovedcontainer for Caesar Cipher analyseverktøyet */
+.advanced-caesar-section {
+    background: #1a1a2ee6;              /* Mørk blå/lilla bakgrunn med 90% opacity */
+    border-radius: 20px;                /* Runde hjørner */
+    padding: 30px;                      /* Indre avstand */
+    margin: 40px auto;                  /* Vertikal avstand og sentrering */
+    max-width: 1200px;                  /* Maksimal bredde */
+    box-shadow: 0 0 40px #00ffff4d;     /* Cyan glow-effekt rundt boksen */
+    border: 2px solid #00ffff4d;        /* Cyan kantlinje */
+}
+
+/* Hovedoverskrift for Caesar analyzer */
+.advanced-caesar-section h1 {
+    color: #00ffff;                     /* Cyan farge */
+    text-align: center;                 /* Sentrert tekst */
+    font-size: 2em;                     /* Stor skriftstørrelse */
+    text-shadow: 0 0 10px #00ffffcc;    /* Sterk cyan glow */
+    margin-bottom: 10px;                /* Avstand under */
+}
+
+/* Undertekst/tagline under hovedoverskrift */
+.advanced-caesar-section .subtitle {
+    text-align: center;                 /* Sentrert tekst */
+    color: #8892b0;                     /* Dempet grå-blå */
+    letter-spacing: 2px;                /* Økt avstand mellom bokstaver */
+    font-size: 0.9em;                   /* Litt mindre enn normal */
+    margin-bottom: 20px;                /* Avstand under */
+}
+
+/* Kontrollbar med knapper og valgmuligheter øverst */
+.controls-bar {
+    display: flex;                      /* Flexbox layout */
+    justify-content: space-between;     /* Fordel elementer med maks avstand */
+    align-items: center;                /* Sentrer vertikalt */
+    margin: 20px 0;                     /* Vertikal avstand */
+    flex-wrap: wrap;                    /* Tillat wrapping på små skjermer */
+    gap: 10px;                          /* Avstand mellom elementer */
+}
+
+/* Dark mode toggle-knapp */
+.dark-mode-toggle {
+    background: #00ffff1a;              /* Lett cyan bakgrunn (10% opacity) */
+    border: 2px solid #00ffff;          /* Cyan kantlinje */
+    color: #00ffff;                     /* Cyan tekst */
+    padding: 10px 20px;                 /* Indre avstand */
+    border-radius: 10px;                /* Runde hjørner */
+    cursor: pointer;                    /* Håndpeker ved hover */
+    transition: all 0.3s;               /* Myk overgang ved endringer */
+    font-weight: bold;                  /* Fet skrift */
+}
+
+/* Hover-effekt for dark mode knapp */
+.dark-mode-toggle:hover {
+    background: #00ffff33;              /* Mørkere cyan bakgrunn ved hover (20% opacity) */
+    box-shadow: 0 0 15px #00ffff66;     /* Cyan glow-effekt ved hover */
+}
+
+/* Dark mode for hele siden */
+body.dark-mode {
+    background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #1a1a1a 100%);
+}
+
+/* Dark mode for Caesar-seksjonen */
+body.dark-mode .advanced-caesar-section {
+    background: #000000f2;              /* Nesten helt svart bakgrunn (95% opacity) */
+}
+
+/* Informasjonsbokser med tips og instruksjoner */
+.info-box {
+    background: #16213e;                /* Mørk blå bakgrunn */
+    border: 2px solid #00ffff80;        /* Halvtransparent cyan kant */
+    padding: 15px;                      /* Indre avstand */
+    border-radius: 8px;                 /* Runde hjørner */
+    color: #e0e0e0;                     /* Lys grå tekst */
+    line-height: 1.6;                   /* God linjeavstand for lesbarhet */
+}
+
+/* Container for hurtigknapper (ROT13/5/47) */
+.cipher-controls {
+    display: flex;                      /* Flexbox layout */
+    justify-content: center;            /* Sentrer horisontalt */
+    gap: 10px;                          /* Avstand mellom knapper */
+    margin: 20px 0;                     /* Vertikal avstand */
+}
+
+/* ==========================================================
+   📊 GRID LAYOUT - To-kolonners responsivt design
+   ========================================================== */
+
+/* Hovedgrid med to kolonner for input og analyse */
+.grid-container {
+    display: grid;                      /* CSS Grid layout */
+    grid-template-columns: 1fr 1fr;     /* To like kolonner */
+    gap: 20px;                          /* Avstand mellom kolonner */
+    margin-top: 20px;                   /* Avstand over */
+}
+
+/* Responsiv: En kolonne på små skjermer */
+@media (max-width: 1200px) {
+    .grid-container {
+        grid-template-columns: 1fr;     /* Én kolonne på mobil/tablet */
+    }
+}
+
+/* Fil-drop sone for å laste opp filer */
+.file-drop-zone {
+    background: #00ffff0d;              /* Veldig lett cyan bakgrunn (5% opacity) */
+    border: 2px dashed #00ffff;         /* Stiplet cyan kant */
+    border-radius: 10px;                /* Runde hjørner */
+    padding: 30px;                      /* Mye indre avstand */
+    text-align: center;                 /* Sentrert tekst */
+    color: #00ffff;                     /* Cyan tekst */
+    cursor: pointer;                    /* Håndpeker ved hover */
+    transition: all 0.3s;               /* Myk overgang */
+    margin-bottom: 20px;                /* Avstand under */
+}
+
+/* Hover-effekt for fil-drop sone */
+.file-drop-zone:hover {
+    background: #00ffff1a;              /* Mørkere cyan ved hover (10% opacity) */
+    border-color: #51cf66;              /* Grønn kant ved hover */
+}
+
+/* Grid for statistikk-kort (IC, Chi-Square, Entropy osv) */
+.stats-grid {
+    display: grid;                                              /* CSS Grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Automatisk antall kolonner */
+    gap: 10px;                                                  /* Avstand mellom kort */
+    margin: 15px 0;                                             /* Vertikal avstand */
+}
+
+/* Statistikk-kort for IC, Chi-Square, Entropy osv */
+.stat-card {
+    background: #1a1a2e;                /* Mørk blå bakgrunn */
+    border: 2px solid #00ffff;          /* Cyan kantlinje */
+    border-radius: 10px;                /* Runde hjørner */
+    padding: 15px;                      /* Indre avstand */
+    text-align: center;                 /* Sentrert innhold */
+}
+
+/* Label for statistikk (f.eks. "IC", "Chi-Square") */
+.stat-label {
+    color: #8892b0;                     /* Dempet grå-blå */
+    font-size: 0.8em;                   /* Mindre skrift */
+    margin-bottom: 8px;                 /* Avstand under */
+    text-transform: uppercase;          /* Store bokstaver */
+}
+
+/* Verdi for statistikk (tallet) */
+.stat-value {
+    color: #00ffff;                     /* Cyan farge */
+    font-size: 1.5em;                   /* Stor skrift */
+    font-weight: bold;                  /* Fet tekst */
+}
+
+/* Hint-tekst under statistikkverdien */
+.stat-hint {
+    color: #8892b0;                     /* Dempet grå-blå */
+    font-size: 0.7em;                   /* Veldig liten skrift */
+    margin-top: 5px;                    /* Avstand over */
+}
+
+/* Dropdown-meny for alfabet og ngram-analyse */
+.advanced-caesar-section select {
+    background: #0f0f1e;                /* Mørk bakgrunn */
+    border: 2px solid #00ffff;          /* Cyan kant */
+    color: #00ffff;                     /* Cyan tekst */
+    padding: 10px;                      /* Indre avstand */
+    border-radius: 8px;                 /* Runde hjørner */
+    width: 100%;                        /* Full bredde */
+    cursor: pointer;                    /* Håndpeker ved hover */
+    font-family: 'Courier New', monospace; /* Monospace font */
+}
+
+/* Focus-state for dropdown */
+.advanced-caesar-section select:focus {
+    outline: none;                      /* Fjern standard outline */
+    border-color: #00ffff;              /* Hold cyan farge */
+}
+
+/* Hurtigknapper for ROT13, ROT5, ROT47 */
+.quick-btn {
+    background: #00ffff1a;              /* Lett cyan bakgrunn (10% opacity) */
+    border: 2px solid #00ffff;          /* Cyan kant */
+    color: #00ffff;                     /* Cyan tekst */
+    padding: 10px 20px;                 /* Indre avstand */
+    border-radius: 10px;                /* Runde hjørner */
+    cursor: pointer;                    /* Håndpeker */
+    transition: all 0.3s;               /* Myk overgang */
+    font-weight: bold;                  /* Fet tekst */
+}
+
+/* Hover-effekt for hurtigknapper */
+.quick-btn:hover {
+    background: #00ffff33;              /* Mørkere cyan ved hover (20% opacity) */
+    transform: translateY(-2px);        /* Løft knapp */
+    box-shadow: 0 5px 15px #00ffff66;   /* Cyan skygge */
+}
+
+/* Panel/boks for hver hovedseksjon (input, frekvens, substitusjon) */
+.caesar-panel {
+    background: #1a1a2e;                /* Mørk blå bakgrunn */
+    border-radius: 15px;                /* Runde hjørner */
+    padding: 25px;                      /* Indre avstand */
+    margin-top: 20px;                   /* Avstand over */
+    margin-left: auto;                  /* Automatisk venstre margin for sentrering */
+    margin-right: auto;                 /* Automatisk høyre margin for sentrering */
+    max-width: 1200px;                  /* Maks bredde matcher grid-container */
+    border: 2px solid #00ffff66;        /* Halvtransparent cyan kant (40% opacity) */
+}
+
+/* Overskrift for hvert panel */
+.panel-title {
+    color: #00ffff;                     /* Cyan farge */
+    font-size: 1.5em;                   /* Stor skrift */
+    margin-bottom: 20px;                /* Avstand under */
+    text-align: left;                   /* Venstrejustert tekst */
+}
+
+/* Input-gruppe for label og inputfelt */
+.advanced-caesar-section .input-group {
+    margin-bottom: 20px;                /* Avstand under hver gruppe */
+}
+
+/* Label for inputfelt */
+.advanced-caesar-section .input-group label {
+    display: block;                     /* Egen linje */
+    color: #00ffff;                     /* Cyan farge */
+    margin-bottom: 8px;                 /* Avstand under */
+    font-weight: bold;                  /* Fet tekst */
+}
+
+/* Textarea og number input styling */
+.advanced-caesar-section textarea,
+.advanced-caesar-section input[type="number"],
+.advanced-caesar-section input[type="text"] {
+    width: 100%;                        /* Full bredde */
+    background: #0f0f1e;                /* Mørk bakgrunn */
+    border: 2px solid #00ffff;          /* Cyan kant */
+    color: #ffffff;                     /* Hvit tekst */
+    padding: 12px;                      /* Indre avstand */
+    border-radius: 8px;                 /* Runde hjørner */
+    font-family: 'Courier New', monospace; /* Monospace font */
+    font-size: 14px;                    /* Skriftstørrelse */
+    transition: border-color 0.3s;      /* Myk overgang for kantfarge */
+}
+
+/* Focus-state for input/textarea */
+.advanced-caesar-section textarea:focus,
+.advanced-caesar-section input[type="number"]:focus,
+.advanced-caesar-section input[type="text"]:focus {
+    outline: none;                      /* Fjern standard outline */
+    border-color: #00ffff;              /* Cyan kant */
+    box-shadow: 0 0 10px #00ffff4d;     /* Cyan glow (30% opacity) */
+}
+
+/* Grid for action-knapper (Krypter, Dekrypter, Auto-Solve osv) */
+.button-grid {
+    display: grid;                                          /* CSS Grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Automatisk antall kolonner */
+    gap: 10px;                                              /* Avstand mellom knapper */
+    margin: 20px 0;                                         /* Vertikal avstand */
+}
+
+/* Hovedknapper i Caesar analyzer */
+.advanced-caesar-section button {
+    background: linear-gradient(135deg, #00ffff33, #00ffff1a); /* Gradient cyan bakgrunn */
+    border: 2px solid #00ffff;                              /* Cyan kant */
+    color: #00ffff;                                         /* Cyan tekst */
+    padding: 12px 20px;                                     /* Indre avstand */
+    border-radius: 10px;                                    /* Runde hjørner */
+    cursor: pointer;                                        /* Håndpeker */
+    font-weight: bold;                                      /* Fet tekst */
+    transition: all 0.3s;                                   /* Myk overgang */
+    position: relative;                                     /* For eventuelle overlays */
+    overflow: hidden;                                       /* Skjul overflow */
+}
+
+/* Hover-effekt for knapper */
+.advanced-caesar-section button:hover {
+    background: linear-gradient(135deg, #00ffff4d, #00ffff33); /* Mørkere gradient ved hover */
+    transform: translateY(-2px);                            /* Løft knapp */
+    box-shadow: 0 5px 15px #00ffff66;                       /* Cyan skygge */
+}
+
+/* Active/klikk-state for knapper */
+.advanced-caesar-section button:active {
+    transform: translateY(0);                               /* Nullstill posisjon */
+}
+
+/* Grid for brute force resultater (alle 26 rotasjoner) */
+.brute-force-grid {
+    display: grid;                                          /* CSS Grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatiske kolonner */
+    gap: 15px;                                              /* Avstand mellom kort */
+    margin-top: 15px;                                       /* Avstand over */
+}
+
+/* Kort for hver brute force-rotasjon */
+.brute-result-card {
+    background: #1a1a2e;                /* Mørk blå bakgrunn */
+    border: 2px solid #00ffff;          /* Cyan kant */
+    border-radius: 10px;                /* Runde hjørner */
+    padding: 15px;                      /* Indre avstand */
+    transition: all 0.3s;               /* Myk overgang */
+    cursor: pointer;                    /* Håndpeker */
+}
+
+/* Hover-effekt for brute force kort */
+.brute-result-card:hover {
+    border-color: #00ffff;              /* Cyan kant */
+    box-shadow: 0 0 20px #00ffff66;     /* Cyan glow (40% opacity) */
+    transform: scale(1.02);             /* Zoom inn litt */
+}
+
+/* Overskrift i brute force kort (f.eks. "ROT-5") */
+.brute-result-card h3 {
+    color: #00ffff;                     /* Cyan farge */
+    margin-bottom: 10px;                /* Avstand under */
+}
+
+.brute-result-card p {
+    color: #ffffff;
+    word-break: break-word;
+}
+
+.auto-solve-card {
+    background: #1a1a2e;
+    border: 2px solid #51cf66;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.auto-solve-card h3 {
+    color: #51cf66;
+    margin-bottom: 10px;
+}
+
+.auto-solve-card .score {
+    color: #ffd43b;
+    font-weight: bold;
+}
+
+.auto-solve-card .result-text {
+    color: #ffffff;
+    margin-top: 10px;
+    padding: 10px;
+    background: #00000066; /* svart med 40% opacity */
+    border-radius: 5px;
+    word-break: break-word;
+}
+
+/* ========================================
+   ADVANCED FEATURES CSS
+   ======================================== */
+
+.file-drop-zone.dragover {
+    border-color: #00ffff;
+    background: #00ffff1a;
+    transform: scale(1.02);
+}
+
+.bar-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.bar {
+    width: 100%;
+    background: linear-gradient(to top, #00ffff, #00ffff80);
+    border-radius: 3px 3px 0 0;
+    transition: all 0.3s ease;
+    min-height: 2px;
+}
+
+.bar:hover {
+    background: linear-gradient(to top, #ffd43b, #ffd43b80);
+}
+
+.bar-label {
+    color: #8892b0;
+    font-size: 0.7em;
+}
+
+.frequency-chart {
+    background: #00000066;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 200px;
+    gap: 2px;
+}
+
+.loading {
+    text-align: center;
+    color: #00ffff;
+    padding: 20px;
+    font-size: 1.2em;
+    display: none;
+}
+
+.loading.active {
+    display: block;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.brute-force-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.result-card {
+    background: #00000066;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 4px solid #00ffff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.result-card:hover {
+    background: #00ffff1a;
+    border-left-color: #ff6b6b;
+    transform: translateX(5px);
+}
+
+.shift-label {
+    color: #ff6b6b;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 0.85em;
+}
+
+.suggestion-card {
+    background: #00ffff1a;
+    border: 2px solid #00ffff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.suggestion-card:hover {
+    background: #00ffff33;
+    transform: translateX(5px);
+    box-shadow: 0 0 20px #00ffff66;
+}
+
+.confidence-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
+.confidence-high {
+    background: #51cf66;
+    color: black;
+}
+
+.confidence-medium {
+    background: #ffd43b;
+    color: black;
+}
+
+.confidence-low {
+    background: #ff6b6b;
+    color: white;
+}
+
+/* Dark mode styling */
+body.dark-mode {
+    background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #1a1a1a 100%);
+}
+
+body.dark-mode .caesar-panel {
+    background: #00000099;
+}
+
+body.dark-mode .advanced-caesar-section {
+    background: #00000099;
+}
+
+/* Stat hint styling */
+.stat-hint {
+    font-size: 0.7em;
+    color: #8892b0;
+    margin-top: 5px;
+}
+
+/* Custom scrollbar for brute force results */
+.brute-force-grid::-webkit-scrollbar {
+    width: 10px;
+}
+
+.brute-force-grid::-webkit-scrollbar-track {
+    background: #0f0f1e80;
+}
+
+.brute-force-grid::-webkit-scrollbar-thumb {
+    background: #00ffff;
+    border-radius: 5px;
+}
+
+.brute-force-grid::-webkit-scrollbar-thumb:hover {
+    background: #00ffff80;
+}
+
+/* Advanced panel styling */
+#advancedPanel {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button hover effects enhancement */
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: #00ffff33;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+button span {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================================
+   📊 N-GRAM TABELL - Styling
+   ========================================================== */
+
+.caesar-panel #ngramTable {
+  text-align: left !important;
+  background: #0d0f1c !important;
+  border: 1px solid #121528 !important;
+  border-radius: 10px !important;
+}
+
+.caesar-panel #ngramTable table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+.caesar-panel #ngramTable table tr td {
+    padding: 8px !important;
+    color: #00ffff !important;
+    text-align: left !important;
+}
+
+.caesar-panel #ngramTable table tr td:first-child {
+    padding-left: 0 !important;
+    color: #00ffff !important;
+}
+
+.caesar-panel #ngramTable table tr td:last-child {
+  text-align: left !important;
+  color: #00ffff !important;
+  width: auto !important;
+  padding-right: 0 !important;
+}
+
+.caesar-panel #ngramTable table tr th:last-child {
+  text-align: left !important;
+  width: auto !important;
+  padding-right: 0 !important;
+}
+
+.caesar-panel #ngramTable table th {
+    padding: 8px !important;
+    color: #00ffff !important;
+}
+
+/* N-gram table reusable classes */
+.ngram-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ngram-header th {
+  padding: 8px;
+  text-align: left;
+  color: var(--primary-cyan);
+  border-bottom: 1px solid #00ffff26; /* cyan med 15% opacity */
+}
+
+.ngram-row td {
+  padding: 8px;
+  text-align: left;
+  color: var(--primary-cyan);
+  border-bottom: 1px solid #00ffff1a; /* cyan med 10% opacity */
+}
+
+.ngram-count {
+  text-align: right;
+}
+
+.ngram-chip {
+  background: #000000cc;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--primary-cyan);
+  display: inline-block;
+}
+
+/* Pattern recognition cards */
+.pattern-wrapper {
+  background: #00000066;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.pattern-title {
+  color: var(--primary-cyan);
+  margin-bottom: 10px;
+}
+
+.pattern-summary {
+  color: #e0e0e0;
+}
+
+.pattern-card {
+  background: #000000cc;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border-left: 3px solid var(--primary-cyan);
+  color: #e0e0e0;
+}
+
+.pattern-highlight {
+  color: var(--primary-cyan);
+}
+
+.pattern-empty {
+  color: #8892b0;
 }
