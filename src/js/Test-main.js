@@ -245,6 +245,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
+  // Features button toggle
+  const featuresBtn = document.getElementById('featuresBtn')
+  const featuresPanel = document.getElementById('featuresPanel')
+  featuresBtn?.addEventListener('click', () => {
+    if (!featuresPanel) return
+    const isVisible = featuresPanel.style.display === 'block'
+    if (isVisible) {
+      featuresPanel.style.display = 'none'
+    } else {
+      featuresPanel.innerHTML = `
+        <strong>📚 App-funksjoner:</strong><br><br>
+        <strong>🔐 Caesar Cipher:</strong><br>
+        • Encrypt/Decrypt med shift-verdi<br>
+        • ROT13, ROT5, ROT47 hurtigknapper<br>
+        • Auto-Solve (ensemble scoring)<br>
+        • Brute Force (alle 26 rotasjoner)<br><br>
+        <strong>📊 Kryptoanalyse:</strong><br>
+        • IC (Index of Coincidence)<br>
+        • Shannon Entropy<br>
+        • Chi-Square test<br>
+        • Språkdeteksjon (Bokmål/Nynorsk/Engelsk)<br>
+        • Frekvensdiagram (A-Z + ÆØÅ)<br>
+        • N-gram analyse (bigram, trigram, quadgram, custom)<br><br>
+        <strong>🔧 Substitusjonsløser:</strong><br>
+        • Automatisk frekvensbasert mapping<br>
+        • Manuell bokstavmapping<br>
+        • Apply/Reset/Copy funksjoner<br><br>
+        <strong>🚀 Avanserte verktøy:</strong><br>
+        • Crib søk<br>
+        • Hill Climbing<br>
+        • Pattern recognition<br>
+        • Polyalphabetic detection<br><br>
+        <strong>🛠️ Andre funksjoner:</strong><br>
+        • Dark Mode<br>
+        • Fil upload (.txt)<br>
+        • Eksporter resultat<br>
+        • Kopier til clipboard<br>
+        • Passord-sjekker<br>
+        • Bildegalleri + Modal
+      `
+      featuresPanel.style.display = 'block'
+      featuresPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+  })
+
   // Substitution controls
   const autoSolveSubBtn = document.getElementById('autoSolveSubBtn')
   const showMappingBtn = document.getElementById('showMappingBtn')
