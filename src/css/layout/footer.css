@@ -1,0 +1,10 @@
+footer {
+  background: var(--color-secondary);
+  color: var(--color-heading-alt);
+  width: 100%;
+  border-radius: var(--radius-sm);
+}
+
+footer > p {
+  padding: calc(var(--spacing-lg) + var(--spacing-sm));
+}

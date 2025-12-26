@@ -1,0 +1,23 @@
+header {
+  padding: var(--spacing-lg) 0;
+}
+
+.hero-copy {
+  padding: var(--spacing-xs);
+}
+
+#hero-img > figure > img {
+  border-radius: var(--radius-lg);
+  margin: 0 auto;
+}
+
+.hero-main-image {
+  width: 50%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+#hero-img figure footer {
+  margin-top: var(--spacing-sm);
+}

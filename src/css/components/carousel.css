@@ -1,0 +1,24 @@
+.card-container {
+  overflow-x: auto;
+  padding: 1rem;
+  contain: layout style paint;
+}
+
+.card-container .card {
+  width: 300px;
+  max-width: 100%;
+}
+
+.card-track {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+  animation: slide-left 180s linear infinite;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.card-track:hover {
+  animation-play-state: paused;
+}

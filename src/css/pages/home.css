@@ -1,0 +1,23 @@
+main {
+  width: 90%;
+  margin: auto;
+  position: relative;
+  border-radius: var(--radius-sm);
+  margin-top: 50px;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-grid {
+  display: grid;
+}

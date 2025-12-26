@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
-    "lint:js": "eslint \"js/**/*.js\"",
+    "lint:js": "eslint \"{js,src/js}/**/*.js\"",
     "lint:css": "stylelint \"**/*.css\" --allow-empty-input",
-    "lint:html": "htmlhint \"**/*.html\"",
-    "prepare": "husky install"
+    "lint:html": "htmlhint \"**/*.html\""
   },
   "lint-staged": {
     "*.js": "eslint --fix",
@@ -23,7 +22,6 @@
     "stylelint": "^16.7.0",
     "stylelint-config-standard": "^36.0.0",
     "htmlhint": "^1.1.4",
-    "husky": "^9.0.0",
     "lint-staged": "^15.2.0"
   }
 }
