@@ -495,9 +495,14 @@
             
             <div class="controls-bar">
                 <!-- Dark mode toggle knapp -->
-                <button class="dark-mode-toggle" id="darkModeToggle">
-                    <span>🌙 Dark Mode</span>
-                </button>
+                <div class="controls-bar-wrapper">
+                    <button class="dark-mode-toggle" id="darkModeToggle">
+                        <span>🌙 Dark Mode</span>
+                    </button>
+                    <button class="dark-mode-toggle" id="featuresBtn">
+                        <span>📚 Funksjoner</span>
+                    </button>
+                </div>
                 <div class="controls-bar-wrapper">
                     <!-- Modus-velger for CTF vs Læringsmodus -->
                     <label class="controls-bar-label">Modus:</label>
@@ -624,6 +629,8 @@
                     <button id="advancedAnalysisBtn" class="substitution-apply-btn">
                         <span>🔬 Avansert Kryptoanalyse</span>
                     </button>
+
+                    <div id="featuresPanel" class="info-box info-box-spacing" style="display: none;"></div>
 
                     <div class="frequency-chart">
                         <div class="chart-bars" id="frequencyChart"></div>
