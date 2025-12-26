@@ -10,10 +10,11 @@
 }
 
 .card-track {
+  --scroll-distance: 0px;
   display: flex;
   gap: 1rem;
   align-items: stretch;
-  animation: slide-left 180s linear infinite;
+  animation: scroll-left 180s linear infinite;
   width: max-content;
   will-change: transform;
   backface-visibility: hidden;

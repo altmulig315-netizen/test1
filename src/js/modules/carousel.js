@@ -1,15 +1,14 @@
-// Duplicates carousel cards for seamless loop and hides cloned items from a11y/tab flow.
+// Configures carousel scroll distance so the loop restarts right after last card.
 export function initCarousel () {
   const track = document.querySelector('.card-track')
-  if (!track || track.dataset.duplicated === 'true') return
-  const markup = track.innerHTML
-  if (!markup.trim()) return
-  const originalCount = track.children.length
-  track.insertAdjacentHTML('beforeend', markup)
-  for (let i = originalCount; i < track.children.length; i++) {
-    const el = track.children[i]
-    el.setAttribute('aria-hidden', 'true')
-    el.querySelectorAll && el.querySelectorAll('a,button').forEach((node) => node.setAttribute('tabindex', '-1'))
+  const container = track?.parentElement
+  if (!track || !container) return
+
+  const setScrollDistance = () => {
+    const distance = Math.max(track.scrollWidth - container.clientWidth, 0)
+    track.style.setProperty('--scroll-distance', `${distance}px`)
   }
-  track.dataset.duplicated = 'true'
+
+  setScrollDistance()
+  window.addEventListener('resize', setScrollDistance)
 }
