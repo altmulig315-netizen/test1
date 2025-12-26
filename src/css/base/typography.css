@@ -4,7 +4,7 @@ h3,
 h4,
 h5,
 h6 {
-  animation: titleGlow 3s ease-in-out infinite;
+  animation: title-glow 3s ease-in-out infinite;
   will-change: text-shadow;
   transform: translateZ(0);
 }

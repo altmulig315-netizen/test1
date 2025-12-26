@@ -1,5 +1,14 @@
 header {
   padding: var(--spacing-lg) 0;
+  text-align: center;
+}
+
+header img {
+  display: block;
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
 }
 
 .hero-copy {

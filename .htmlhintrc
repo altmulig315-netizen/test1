@@ -11,5 +11,6 @@
   "title-require": true,
   "inline-style-disabled": false,
   "spec-char-escape": true,
-  "img-alt-require": true
+  "img-alt-require": true,
+  "ignore": ["**/*.md"]
 }
