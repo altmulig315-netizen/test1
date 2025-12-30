@@ -16,7 +16,9 @@ import {
   detectLanguageVariant,
   detectPatterns,
   detectPolyalphabetic,
-  interpretICConfidence
+    interpretICConfidence,
+    sanitizeText,
+    escapeHtml
 } from '../../core/utils.js'
 import { FrequencyAnalyzer } from './analyzer.js'
 
@@ -58,6 +60,15 @@ export class AutoSolver {
 
   autoSolve (text) {
     if (!text) return
+    
+    // Sanitize input text
+    const sanitizedText = sanitizeText(text, {
+      maxLength: 50000,
+      allowNewlines: true
+    })
+    
+    if (!sanitizedText) return
+    
     const mode = document.getElementById('analysisMode')?.value || 'educational'
     const panel = document.getElementById('autoSolvePanel')
     const results = document.getElementById('autoSolveResults')
@@ -65,12 +76,12 @@ export class AutoSolver {
     panel.classList.remove('auto-solve-hidden')
     results.innerHTML = '<div class="p-20 text-center color-cyan">🔬 Analyserer med beslutningsmotor...</div>'
     const alphabet = ALPHABETS[this.alphabetKey] || ALPHABETS.norwegian
-    const icData = calculateSlidingWindowIC(text)
-    const entropy = calculateEntropy(text)
+    const icData = calculateSlidingWindowIC(sanitizedText)
+    const entropy = calculateEntropy(sanitizedText)
     const icConfidence = interpretICConfidence(icData)
     const candidates = []
     for (let shift = 0; shift < alphabet.length; shift++) {
-      const decrypted = caesarTransform(text, shift, this.alphabetKey, false)
+      const decrypted = caesarTransform(sanitizedText, shift, this.alphabetKey, false)
       const ensembleScore = this.calculateEnsembleScore(decrypted)
       const wordCount = countNorwegianWords(decrypted)
       const norwegianCharsDecrypted = checkNorwegianChars(decrypted)
@@ -110,7 +121,7 @@ export class AutoSolver {
       let html = '<div class="analysis-report-box">'
       html += '<h3 class="analysis-report-title">🔬 Analyserapport</h3>'
       html += '<div class="analysis-report-content">'
-      html += `<strong>📏 Tekstlengde:</strong> ${text.replace(/[^A-ZÆØÅ]/gi, '').length} tegn<br>`
+        html += `<strong>📏 Tekstlengde:</strong> ${escapeHtml(sanitizedText.replace(/[^A-ZÆØÅ]/gi, '')).length} tegn<br>`
       html += `<strong>🎲 Entropy:</strong> ${entropy.toFixed(3)} bits (${entropy < 4.0 ? 'strukturert' : 'tilfeldig'})<br>`
       html += `<strong>🔍 IC:</strong> ${icData.mean.toFixed(4)} ± ${icData.stdDev.toFixed(4)}<br>`
       html += `<strong>🎯 IC-konfidans:</strong> ${icConfidence}<br>`
@@ -137,7 +148,7 @@ export class AutoSolver {
               ${candidate.hasNorwegianChars ? ' ✓ ÆØÅ' : ''}
               ${candidate.wordCount > 0 ? ` (${candidate.wordCount} ord)` : ''}
             </div>
-            <div class="result-text result-text-truncated">${candidate.text.substring(0, 200)}${candidate.text.length > 200 ? '...' : ''}</div>
+              <div class="result-text result-text-truncated">${escapeHtml(candidate.text.substring(0, 200))}${candidate.text.length > 200 ? '...' : ''}</div>
             <div class="result-metadata">
               📊 Score: ${candidate.score.toFixed(2)} | 🧠 Språk: ${candidate.languageVariant} ${candidate.norwegianCharPercent > 0 ? `(${candidate.norwegianCharPercent.toFixed(1)}% ÆØÅ)` : ''}
             </div>
@@ -153,7 +164,7 @@ export class AutoSolver {
     const renderCTFMode = () => {
       const best = candidates[0]
       return `
-        <div class="result-text auto-solve-card-result">${best.text}</div>
+          <div class="result-text auto-solve-card-result">${escapeHtml(best.text)}</div>
         <div class="mt-10 color-muted text-center">Shift: ${best.shift} | Confidence: ${confidencePercent.toFixed(0)}%</div>`
     }
     results.innerHTML = mode === 'ctf' ? renderCTFMode() : renderLearningMode()
@@ -173,16 +184,25 @@ export class AutoSolver {
 
   bruteForce (text) {
     if (!text) return
+    
+    // Sanitize input text
+    const sanitizedText = sanitizeText(text, {
+      maxLength: 50000,
+      allowNewlines: true
+    })
+    
+    if (!sanitizedText) return
+    
     const panel = document.getElementById('bruteForcePanel')
     const results = document.getElementById('bruteForceResults')
     if (!panel || !results) return
     let html = ''
     for (let shift = 0; shift < 26; shift++) {
-      const decoded = caesarTransform(text, shift, this.alphabetKey, false)
+      const decoded = caesarTransform(sanitizedText, shift, this.alphabetKey, false)
       html += `
         <div class="brute-result-card" data-shift="${shift}">
           <h3>Shift ${shift}</h3>
-          <p>${decoded.substring(0, 150)}${decoded.length > 150 ? '...' : ''}</p>
+          <p>${escapeHtml(decoded.substring(0, 150))}${decoded.length > 150 ? '...' : ''}</p>
         </div>`
     }
     results.innerHTML = html
@@ -190,7 +210,7 @@ export class AutoSolver {
     results.querySelectorAll('.brute-result-card').forEach((card) => {
       card.addEventListener('click', () => {
         const shift = Number(card.dataset.shift || 0)
-        const decoded = caesarTransform(text, shift, this.alphabetKey, false)
+          const decoded = caesarTransform(sanitizedText, shift, this.alphabetKey, false)
         const output = document.getElementById('outputText')
         const shiftValue = document.getElementById('shiftValue')
         if (output) output.value = decoded
