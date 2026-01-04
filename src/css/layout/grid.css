@@ -50,3 +50,23 @@
   color: var(--color-text-muted);
   margin-top: var(--spacing-xxs);
 }
+
+.hero-content  {
+  position: relative;
+  text-align: center;
+}
+
+.hero-content h1 {
+  margin: 0;
+}
+
+.hero-content .animated-border {
+  position: absolute;
+  right: 150px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero-copy {
+    text-align: center;
+}
