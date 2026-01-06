@@ -790,52 +790,80 @@
             </div>
         </div>
    
-   <div class="container">
-        <h1>🔒 Password Strength Checker</h1>
-        
-        <div class="input-group">
-            <input type="password" id="password" placeholder="Skriv inn passord...">
-            <span class="toggle-password" id="togglePassword">👁️</span>
-        </div>
+      <div class="container" style="background: #2a2a3e; color: #e0e0e0;">
+        <h1>🔐 Password Strength Checker</h1>
+        <p class="subtitle">Sjekk bitstyrken til passordet ditt</p>
 
-        <div class="char-count">
-            <span id="charCount">0 tegn</span>
+        <div class="input-group">
+          <label for="password">Skriv inn passord:</label>
+          <div class="password-input-wrapper">
+            <input type="password" id="password" placeholder="Skriv ditt passord her..." autocomplete="new-password">
+            <button class="toggle-password" id="toggleBtn">👁️</button>
+          </div>
         </div>
 
         <div class="strength-meter">
-            <div class="strength-label">
-                <span>Passordstyrke:</span>
-                <span class="strength-text" id="strengthText">-</span>
-            </div>
-            <div class="meter-bar">
-                <div class="meter-fill" id="meterFill"></div>
-            </div>
+          <div class="strength-label">
+            <span class="strength-text" id="strengthText">Skriv inn et passord</span>
+            <span class="bit-strength" id="bitStrength">0 bits</span>
+          </div>
+          <div class="strength-bar-container">
+            <div class="strength-bar" id="strengthBar"></div>
+          </div>
         </div>
 
-        <div class="requirements">
-            <h3>Krav:</h3>
-            <div class="requirement" id="req-length">
-                <span class="icon"></span>
-                <span>Minst 12 tegn</span>
+        <div class="results">
+          <div class="result-item">
+            <span class="result-label">Lengde:</span>
+            <span class="result-value" id="length">0 tegn</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Mulige kombinasjoner:</span>
+            <span class="result-value" id="combinations">0</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Tegnrom (charset size):</span>
+            <span class="result-value" id="charsetSize">0</span>
+          </div>
+
+          <div class="char-types">
+            <div class="char-type">
+              <div class="char-type-icon inactive" id="lowercase">a</div>
+              <span>Små bokstaver (a-z)</span>
             </div>
-            <div class="requirement" id="req-lowercase">
-                <span class="icon"></span>
-                <span>Små bokstaver (a-z)</span>
+            <div class="char-type">
+              <div class="char-type-icon inactive" id="uppercase">A</div>
+              <span>Store bokstaver (A-Z)</span>
             </div>
-            <div class="requirement" id="req-uppercase">
-                <span class="icon"></span>
-                <span>Store bokstaver (A-Z)</span>
+            <div class="char-type">
+              <div class="char-type-icon inactive" id="numbers">1</div>
+              <span>Tall (0-9)</span>
             </div>
-            <div class="requirement" id="req-number">
-                <span class="icon"></span>
-                <span>Tall (0-9)</span>
+            <div class="char-type">
+              <div class="char-type-icon inactive" id="symbols">@</div>
+              <span>Symboler (!@#$%)</span>
             </div>
-            <div class="requirement" id="req-symbol">
-                <span class="icon"></span>
-                <span>Spesialtegn (!@#$%...)</span>
-            </div>
+          </div>
         </div>
-    </div>
+
+        <div class="crack-time">
+          <div class="crack-time-label">Estimert tid å knekke (brute force):</div>
+          <div class="crack-time-value" id="crackTime">-</div>
+        </div>
+
+        <div class="info-box">
+          <strong>💡 Hva er bitstyrke?</strong>
+          Bitstyrke måler hvor mange binære gjetteforsøk som trengs for å knekke passordet. 
+          Formula: log₂(mulige kombinasjoner). Jo høyere, jo bedre!
+        </div>
+
+        <div id="recommendationsBox" class="recommendations">
+          <h3>⚠️ Anbefalinger for å forbedre passordet:</h3>
+          <ul id="recommendationsList"></ul>
+        </div>
+
+        <button class="generate-btn" id="generateBtn">🎲 Generer sterkt passord</button>
+      </div>
 
         <ul>
             <li>
