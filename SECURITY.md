@@ -123,6 +123,7 @@ Dette prosjektet har implementert omfattende klientsidevalidering og sanitering 
 3. **Escape HTML** - Når innerHTML er nødvendig
 4. **Validate på klient OG server** - Klientsidevalidering er ikke nok alene
 5. **Begrens input** - Sett rimelige grenser på lengde og størrelse
+6. **CSS-farger skal være HEX** - Konverter alle `rgb(...)`/`rgba(...)` til HEX (`#RRGGBB` eller `#RRGGBBAA` for alfa)
 
 ### **For utviklere:**
 ```javascript
@@ -250,6 +251,7 @@ Desember 28, 2025
 - [x] Subresource Integrity (SRI) for any future CDN assets
 - [x] Avoid storing secrets in `localStorage/sessionStorage`
 - [x] HTTPS enforcement
+- [x] CSS bruker kun HEX‑farger (`#RRGGBB`/`#RRGGBBAA`); ingen `rgb(...)`/`rgba(...)`
 
 ---
 

@@ -1,162 +1,222 @@
-// Password strength widget: toggles visibility, evaluates requirements,
-// updates meter, and syncs requirement indicators.
-import { sanitizeText, validateText, escapeHtml } from '../../core/utils.js'
+// Advanced Password Strength Checker: bit strength, charset size, crack time,
+// character-type indicators, recommendations, and generator.
+import { sanitizeText, validateText } from '../../core/utils.js'
 
 export class PasswordChecker {
   constructor () {
     this.passwordInput = document.getElementById('password')
-    this.togglePassword = document.getElementById('togglePassword')
-    this.meterFill = document.getElementById('meterFill')
+    this.toggleBtn = document.getElementById('toggleBtn')
+    this.strengthBar = document.getElementById('strengthBar')
     this.strengthText = document.getElementById('strengthText')
-    this.charCount = document.getElementById('charCount')
-    if (!this.passwordInput || !this.togglePassword || !this.meterFill || !this.strengthText || !this.charCount) {
-      return
-    }
-    this.requirements = ['length', 'lowercase', 'uppercase', 'number', 'symbol']
-    this.initElements()
-    this.attachEventListeners()
-  }
+    this.bitStrength = document.getElementById('bitStrength')
+    this.lengthEl = document.getElementById('length')
+    this.combinationsEl = document.getElementById('combinations')
+    this.charsetSizeEl = document.getElementById('charsetSize')
+    this.crackTimeEl = document.getElementById('crackTime')
+    this.lowercaseIcon = document.getElementById('lowercase')
+    this.uppercaseIcon = document.getElementById('uppercase')
+    this.numbersIcon = document.getElementById('numbers')
+    this.symbolsIcon = document.getElementById('symbols')
+    this.generateBtn = document.getElementById('generateBtn')
+    this.recommendationsBox = document.getElementById('recommendationsBox')
+    this.recommendationsList = document.getElementById('recommendationsList')
 
-  initElements () {
-    this.requirementEls = {
-      length: document.getElementById('req-length'),
-      lowercase: document.getElementById('req-lowercase'),
-      uppercase: document.getElementById('req-uppercase'),
-      number: document.getElementById('req-number'),
-      symbol: document.getElementById('req-symbol')
-    }
+    if (!this.passwordInput || !this.strengthBar || !this.strengthText) return
+    this.attachEventListeners()
+    this.resetDisplay()
   }
 
   attachEventListeners () {
-    this.togglePassword.addEventListener('click', () => this.togglePasswordVisibility())
-    this.passwordInput.addEventListener('input', () => this.checkPassword())
-      // Prevent paste of potentially malicious content
-      this.passwordInput.addEventListener('paste', (e) => this.handlePaste(e))
+    this.toggleBtn?.addEventListener('click', () => this.toggleVisibility())
+    this.passwordInput.addEventListener('input', () => this.onInput())
+    this.passwordInput.addEventListener('paste', (e) => this.handlePaste(e))
+    this.generateBtn?.addEventListener('click', () => this.generateAndAnalyze())
   }
 
-  togglePasswordVisibility () {
+  toggleVisibility () {
     const type = this.passwordInput.type === 'password' ? 'text' : 'password'
     this.passwordInput.type = type
-    this.togglePassword.textContent = type === 'password' ? '👁️' : '🙈'
+    if (this.toggleBtn) this.toggleBtn.textContent = type === 'password' ? '👁️' : '🙈'
   }
 
-    handlePaste (event) {
-      event.preventDefault()
-      const pastedText = (event.clipboardData || window.clipboardData).getData('text')
-      const sanitized = sanitizeText(pastedText, {
-        maxLength: 128,
-        allowNewlines: false,
-        trim: false
-      })
-    
-      // Insert sanitized text at cursor position
-      const start = this.passwordInput.selectionStart
-      const end = this.passwordInput.selectionEnd
-      const currentValue = this.passwordInput.value
-    
-      this.passwordInput.value = currentValue.substring(0, start) + sanitized + currentValue.substring(end)
-      this.passwordInput.selectionStart = this.passwordInput.selectionEnd = start + sanitized.length
-    
-      // Trigger input event to update strength meter
-      this.passwordInput.dispatchEvent(new Event('input'))
-    }
-
-  checkPassword () {
-      const rawPassword = this.passwordInput.value
-    
-      // Sanitize input
-      const password = sanitizeText(rawPassword, {
-        maxLength: 128,
-        allowNewlines: false,
-        allowSpecialChars: true,
-        trim: false
-      })
-    
-      // Update input if sanitized version differs
-      if (password !== rawPassword) {
-        this.passwordInput.value = password
-      }
-    
-      // Validate password
-      const validation = validateText(password, {
-        maxLength: 128,
-        allowEmpty: true
-      })
-    
-      if (!validation.valid && password.length > 0) {
-        this.showError(validation.errors[0])
-        return
-      }
-    
-    const count = password.length
-      // Use textContent for safe output
-      this.charCount.textContent = `${count} tegn`
-    
-    const requirements = {
-      length: password.length >= 12,
-      lowercase: /[a-z]/.test(password),
-      uppercase: /[A-Z]/.test(password),
-      number: /[0-9]/.test(password),
-      symbol: /[!@#$%^&*()_+=\]{};':"\\|,.<>/?-[]/.test(password)
-    }
-    this.updateRequirements(requirements)
-    const metRequirements = Object.values(requirements).filter(Boolean).length
-    this.updateStrength(metRequirements, password.length)
-  }
-
-    showError (message) {
-      // Create or update error message element
-      let errorEl = document.getElementById('password-error')
-      if (!errorEl) {
-        errorEl = document.createElement('div')
-        errorEl.id = 'password-error'
-        errorEl.className = 'error-message'
-        errorEl.style.color = '#ff4757'
-        errorEl.style.fontSize = '0.9rem'
-        errorEl.style.marginTop = '0.5rem'
-        this.passwordInput.parentNode.insertBefore(errorEl, this.passwordInput.nextSibling)
-      }
-      errorEl.textContent = message
-    
-      // Auto-hide after 3 seconds
-      setTimeout(() => {
-        if (errorEl.parentNode) {
-          errorEl.textContent = ''
-        }
-      }, 3000)
-    }
-
-  updateRequirements (reqs) {
-    Object.entries(reqs).forEach(([key, met]) => {
-      const el = this.requirementEls[key]
-      if (!el) return
-      if (met) el.classList.add('met')
-      else el.classList.remove('met')
+  handlePaste (event) {
+    event.preventDefault()
+    const pastedText = (event.clipboardData || window.clipboardData).getData('text')
+    const sanitized = sanitizeText(pastedText, {
+      maxLength: 256,
+      allowNewlines: false,
+      allowSpecialChars: true,
+      trim: false
     })
+    const start = this.passwordInput.selectionStart
+    const end = this.passwordInput.selectionEnd
+    const current = this.passwordInput.value
+    this.passwordInput.value = current.substring(0, start) + sanitized + current.substring(end)
+    this.passwordInput.selectionStart = this.passwordInput.selectionEnd = start + sanitized.length
+    this.passwordInput.dispatchEvent(new Event('input'))
   }
 
-  updateStrength (metRequirements, length) {
-    this.meterFill.className = 'meter-fill'
-    if (length === 0) {
-      this.strengthText.textContent = '-'
-      return
+  onInput () {
+    const raw = this.passwordInput.value
+    const password = sanitizeText(raw, {
+      maxLength: 256,
+      allowNewlines: false,
+      allowSpecialChars: true,
+      trim: false
+    })
+    if (password !== raw) this.passwordInput.value = password
+    const validation = validateText(password, { maxLength: 256, allowEmpty: true })
+    if (!validation.valid && password.length > 0) return this.showTransientError(validation.errors[0])
+    this.update(this.calculate(password))
+  }
+
+  calculate (password) {
+    const length = password.length
+    const hasLowercase = /[a-z]/.test(password)
+    const hasUppercase = /[A-Z]/.test(password)
+    const hasNumbers = /[0-9]/.test(password)
+    const hasSymbols = /[^a-zA-Z0-9]/.test(password)
+    let charsetSize = 0
+    if (hasLowercase) charsetSize += 26
+    if (hasUppercase) charsetSize += 26
+    if (hasNumbers) charsetSize += 10
+    if (hasSymbols) charsetSize += 32
+    const combinations = Math.pow(charsetSize || 1, length)
+    const bits = Math.log2(combinations)
+    const attemptsPerSecond = 1e10
+    const secondsToCrack = combinations / attemptsPerSecond
+    let category, categoryText
+    if (bits < 28) { category = 'very-weak'; categoryText = '❌ Ekstremt svakt' }
+    else if (bits < 36) { category = 'weak'; categoryText = '⚠️ Veldig svakt' }
+    else if (bits < 60) { category = 'weak'; categoryText = '⚠️ Svakt' }
+    else if (bits < 80) { category = 'moderate'; categoryText = '⚡ Moderat' }
+    else if (bits < 128) { category = 'strong'; categoryText = '✅ Sterkt' }
+    else { category = 'very-strong'; categoryText = '🔐 Veldig sterkt' }
+    return {
+      length,
+      charsetSize,
+      combinations,
+      bits: Math.round(bits * 10) / 10,
+      secondsToCrack,
+      hasLowercase,
+      hasUppercase,
+      hasNumbers,
+      hasSymbols,
+      category,
+      categoryText
     }
-    if (metRequirements <= 2) {
-      this.meterFill.classList.add('weak')
-      this.strengthText.textContent = 'Svakt'
-      this.strengthText.style.color = '#ff4757'
-    } else if (metRequirements === 3) {
-      this.meterFill.classList.add('fair')
-      this.strengthText.textContent = 'Middels'
-      this.strengthText.style.color = '#00ffff'
-    } else if (metRequirements === 4) {
-      this.meterFill.classList.add('good')
-      this.strengthText.textContent = 'Bra'
-      this.strengthText.style.color = '#1e90ff'
-    } else if (metRequirements === 5) {
-      this.meterFill.classList.add('strong')
-      this.strengthText.textContent = 'Sterkt'
-      this.strengthText.style.color = '#2ecc71'
+  }
+
+  update (a) {
+    this.strengthBar.className = 'strength-bar ' + a.category
+    this.strengthText.textContent = a.categoryText
+    if (this.bitStrength) this.bitStrength.textContent = `${a.bits} bits`
+    this.lengthEl.textContent = `${a.length} tegn`
+    this.lengthEl.className = 'result-value ' + (a.length >= 12 ? 'good' : 'bad')
+    this.combinationsEl.textContent = this.formatLargeNumber(a.combinations)
+    this.charsetSizeEl.textContent = a.charsetSize
+    this.lowercaseIcon.className = 'char-type-icon ' + (a.hasLowercase ? 'active' : 'inactive')
+    this.uppercaseIcon.className = 'char-type-icon ' + (a.hasUppercase ? 'active' : 'inactive')
+    this.numbersIcon.className = 'char-type-icon ' + (a.hasNumbers ? 'active' : 'inactive')
+    this.symbolsIcon.className = 'char-type-icon ' + (a.hasSymbols ? 'active' : 'inactive')
+    if (this.crackTimeEl) this.crackTimeEl.textContent = this.formatTime(a.secondsToCrack)
+    this.generateRecommendations(a)
+  }
+
+  formatLargeNumber (num) {
+    if (!Number.isFinite(num)) return '∞ (Uendelig)'
+    if (num > 1e100) return '> 10¹⁰⁰'
+    if (num > 1e21) return num.toExponential(2)
+    if (num > 1e12) return (num / 1e12).toFixed(1) + ' billioner'
+    if (num > 1e9) return (num / 1e9).toFixed(1) + ' milliarder'
+    if (num > 1e6) return (num / 1e6).toFixed(1) + ' millioner'
+    return num.toLocaleString('no-NO')
+  }
+
+  formatTime (seconds) {
+    if (!Number.isFinite(seconds) || seconds > 1e15) return '♾️ Praktisk uknekk'
+    const minute = 60
+    const hour = 60 * minute
+    const day = 24 * hour
+    const year = 365.25 * day
+    const century = 100 * year
+    if (seconds < 1) return 'Øyeblikkelig'
+    if (seconds < minute) return Math.round(seconds) + ' sekunder'
+    if (seconds < hour) return Math.round(seconds / minute) + ' minutter'
+    if (seconds < day) return Math.round(seconds / hour) + ' timer'
+    if (seconds < year) return Math.round(seconds / day) + ' dager'
+    if (seconds < century) return Math.round(seconds / year) + ' år'
+    return Math.round(seconds / century) + ' århundrer'
+  }
+
+  generateRecommendations (a) {
+    const recs = []
+    if (a.length < 12) recs.push('Øk lengden til minst 12 tegn')
+    if (!a.hasLowercase) recs.push('Legg til små bokstaver (a-z)')
+    if (!a.hasUppercase) recs.push('Legg til store bokstaver (A-Z)')
+    if (!a.hasNumbers) recs.push('Legg til tall (0-9)')
+    if (!a.hasSymbols) recs.push('Legg til symboler (!@#$%^&*)')
+    if (a.bits < 80) recs.push('Mål på minst 80 bits for viktige kontoer')
+    if (recs.length > 0) {
+      if (this.recommendationsBox) this.recommendationsBox.style.display = 'block'
+      if (this.recommendationsList) this.recommendationsList.innerHTML = recs.map(r => `<li>${r}</li>`).join('')
+    } else if (this.recommendationsBox) {
+      this.recommendationsBox.style.display = 'none'
     }
+  }
+
+  showTransientError (message) {
+    let el = document.getElementById('password-error')
+    if (!el) {
+      el = document.createElement('div')
+      el.id = 'password-error'
+      el.className = 'error-message'
+      el.style.color = '#ff4757'
+      el.style.fontSize = '0.9rem'
+      el.style.marginTop = '0.5rem'
+      this.passwordInput.parentNode.insertBefore(el, this.passwordInput.nextSibling)
+    }
+    el.textContent = message
+    setTimeout(() => { if (el) el.textContent = '' }, 3000)
+  }
+
+  generateAndAnalyze () {
+    const p = this.generateStrongPassword(16)
+    this.passwordInput.value = p
+    this.passwordInput.type = 'text'
+    if (this.toggleBtn) this.toggleBtn.textContent = '🙈'
+    this.update(this.calculate(p))
+  }
+
+  generateStrongPassword (length = 16) {
+    const lower = 'abcdefghijklmnopqrstuvwxyz'
+    const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const nums = '0123456789'
+    const syms = '!@#$%^&*()_+-=[]{}|;:,.<>?'
+    const all = lower + upper + nums + syms
+    let p = ''
+    p += lower[Math.floor(Math.random() * lower.length)]
+    p += upper[Math.floor(Math.random() * upper.length)]
+    p += nums[Math.floor(Math.random() * nums.length)]
+    p += syms[Math.floor(Math.random() * syms.length)]
+    for (let i = p.length; i < length; i++) {
+      p += all[Math.floor(Math.random() * all.length)]
+    }
+    return p.split('').sort(() => Math.random() - 0.5).join('')
+  }
+
+  resetDisplay () {
+    this.strengthBar.className = 'strength-bar'
+    this.strengthText.textContent = 'Skriv inn et passord'
+    if (this.bitStrength) this.bitStrength.textContent = '0 bits'
+    this.lengthEl.textContent = '0 tegn'
+    this.combinationsEl.textContent = '0'
+    this.charsetSizeEl.textContent = '0'
+    if (this.crackTimeEl) this.crackTimeEl.textContent = '-'
+    this.lowercaseIcon.className = 'char-type-icon inactive'
+    this.uppercaseIcon.className = 'char-type-icon inactive'
+    this.numbersIcon.className = 'char-type-icon inactive'
+    this.symbolsIcon.className = 'char-type-icon inactive'
+    if (this.recommendationsBox) this.recommendationsBox.style.display = 'none'
   }
 }
