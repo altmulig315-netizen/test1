@@ -6,7 +6,9 @@
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
     "lint:js": "eslint \"{js,src/js}/**/*.js\"",
     "lint:css": "stylelint \"**/*.css\" --allow-empty-input",
-    "lint:html": "htmlhint \"**/*.html\""
+    "lint:html": "htmlhint \"**/*.html\"",
+    "check:css:hex": "stylelint \"**/*.css\" --allow-empty-input",
+    "fix:css:hex": "node scripts/convert-rgb-to-hex.js"
   },
   "lint-staged": {
     "*.js": "eslint --fix",
