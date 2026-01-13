@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Caesar Cipher Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🔐 ADVANCED CAESAR CIPHER ANALYZER</h1>
+            <p class="subtitle">Profesjonell Kryptoanalyseplattform</p>
+            
+            <!-- Cipher Type Explanation -->
+            <div class="info-box" style="margin-top: 20px; text-align: left;">
+                <strong>⚠️ Viktig: Forstå chiffer-typer</strong><br><br>
+                <strong>🔄 Caesar Cipher (Shift):</strong><br>
+                • Hver bokstav forskyves med SAMME tall (eks: A→D, B→E, C→F med shift 3)<br>
+                • Bruk shift-verdien og dekrypter-knappen<br>
+                • Auto-Solve finner riktig shift automatisk<br><br>
+                
+                <strong>🔀 Substitusjonscryptogram:</strong><br>
+                • Hver bokstav erstattes med en TILFELDIG annen bokstav (eks: A→X, B→M, C→K)<br>
+                • Shift-verdien fungerer IKKE her!<br>
+                • Bruk "Substitusjonsløser" nedenfor<br>
+                • Krever manuell/automatisk mapping av bokstaver
+            </div>
+            
+            <div class="controls-bar">
+                <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <span>🌙 Dark Mode</span>
+                </button>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <label style="color: var(--primary-cyan); font-size: 0.9em;">Modus:</label>
+                    <select id="analysisMode" style="background: rgba(0,255,255,0.1); border: 2px solid var(--primary-cyan); padding: 8px 16px; border-radius: 8px; color: var(--primary-cyan); cursor: pointer;">
+                        <option value="ctf">🚀 CTF-modus (Automatisk)</option>
+                        <option value="educational" selected>🎓 Læringsmodus (Detaljert)</option>
+                    </select>
+                </div>
+                <div class="quick-actions">
+                    <button class="quick-btn" onclick="applyROT13()"><span>ROT13</span></button>
+                    <button class="quick-btn" onclick="applyROT5()"><span>ROT5</span></button>
+                    <button class="quick-btn" onclick="applyROT47()"><span>ROT47</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="grid-container">
+            <!-- Input Panel -->
+            <div class="panel">
+                <h2 class="panel-title">📝 Input & Konfigurasjon</h2>
+                
+                <div class="file-drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                    📁 Dra & slipp .txt-fil her eller klikk for å velge
+                    <input type="file" id="fileInput" accept=".txt" style="display: none;" onchange="handleFileUpload(event)">
+                </div>
+
+                <div class="input-group">
+                    <label for="inputText">Tekst å analysere:</label>
+                    <textarea id="inputText" placeholder="Skriv eller lim inn tekst her..."></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="alphabetType">Alfabet:</label>
+                    <select id="alphabetType" onchange="updateAlphabet()">
+                        <option value="latin">Latin (A-Z)</option>
+                        <option value="norwegian">Norsk (A-ZÆØÅ)</option>
+                        <option value="cyrillic">Kyrillisk</option>
+                        <option value="greek">Gresk</option>
+                        <option value="custom">Egendefinert</option>
+                    </select>
+                </div>
+
+                <div class="input-group" id="customAlphabetGroup" style="display: none;">
+                    <label for="customAlphabet">Egendefinert alfabet:</label>
+                    <input type="text" id="customAlphabet" placeholder="Eks: ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ">
+                </div>
+
+                <div class="input-group">
+                    <label for="shiftValue">Shift-verdi:</label>
+                    <input type="number" id="shiftValue" value="3">
+                </div>
+
+                <div class="button-grid">
+                    <button onclick="encrypt()"><span>🔒 Krypter</span></button>
+                    <button onclick="decrypt()"><span>🔓 Dekrypter</span></button>
+                    <button onclick="autoSolve()"><span>🤖 Auto-Solve</span></button>
+                    <button onclick="bruteForce()"><span>💥 Brute Force</span></button>
+                    <button onclick="copyToClipboard()"><span>📋 Kopier</span></button>
+                    <button onclick="exportResult()"><span>💾 Eksporter</span></button>
+                </div>
+
+                <div class="input-group">
+                    <label for="outputText">Resultat:</label>
+                    <textarea id="outputText" readonly placeholder="Resultatet vises her..."></textarea>
+                </div>
+            </div>
+
+            <!-- Analysis Panel -->
+            <div class="panel">
+                <h2 class="panel-title">📊 Frekvensanalyse</h2>
+                
+                <div class="input-group">
+                    <label for="ngramType">N-gram analyse:</label>
+                    <select id="ngramType" onchange="updateNgramAnalysis()">
+                        <option value="bigram">Bigrammer (2 bokstaver)</option>
+                        <option value="trigram">Trigrammer (3 bokstaver)</option>
+                        <option value="quadgram" selected>Quadgrammer (4 bokstaver) - Beste!</option>
+                        <option value="pentagram">Pentagrammer (5 bokstaver)</option>
+                        <option value="hexagram">Hexagrammer (6 bokstaver)</option>
+                        <option value="custom">Tilpasset N-gram (velg lengde)</option>
+                    </select>
+                </div>
+
+                <div class="input-group" id="customNgramGroup" style="display: none;">
+                    <label for="customNgramLength">N-gram lengde (2-10):</label>
+                    <input type="number" id="customNgramLength" min="2" max="10" value="7" onchange="updateNgramAnalysis()">
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Topp N-gram</div>
+                        <div class="stat-value" id="topNgram" style="font-size: 1.2em;">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">N-gram Score</div>
+                        <div class="stat-value" id="ngramScore">0.00</div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Index of Coincidence</div>
+                        <div class="stat-value" id="icValue">0.000</div>
+                        <div style="font-size: 0.7em; color: var(--text-muted); margin-top: 5px;" id="icConfidence">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Chi-Square Score</div>
+                        <div class="stat-value" id="chiSquare">0.00</div>
+                        <div style="font-size: 0.7em; color: var(--text-muted); margin-top: 5px;" id="chiSquareQuality">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Shannon Entropy</div>
+                        <div class="stat-value" id="entropyValue">0.00</div>
+                        <div style="font-size: 0.7em; color: var(--text-muted); margin-top: 5px;" id="entropyInterpret">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Detektert språk</div>
+                        <div class="stat-value" id="detectedLang">-</div>
+                        <div style="font-size: 0.7em; color: var(--text-muted); margin-top: 5px;" id="langVariant">-</div>
+                    </div>
+                </div>
+
+                <button onclick="showAdvancedAnalysis()" style="width: 100%; margin-top: 15px;">
+                    <span>🔬 Avansert Kryptoanalyse</span>
+                </button>
+
+                <div class="frequency-chart">
+                    <div class="chart-bars" id="frequencyChart"></div>
+                </div>
+
+                <div class="info-box">
+                    <strong>📖 Analyse-indikatorer:</strong><br>
+                    • <strong>IC ≈ 0.067:</strong> Monoalfabetisk chiffer (Caesar/Substitusjon)<br>
+                    • <strong>IC ≈ 0.038:</strong> Polyalfabetisk chiffer (Vigenère)<br>
+                    • <strong>Chi-Square:</strong> Lavere verdi = bedre match med språket<br>
+                    • <strong>N-gram typer:</strong><br>
+                    &nbsp;&nbsp;- Bigrammer (2): Rask, grunnleggende<br>
+                    &nbsp;&nbsp;- Trigrammer (3): God balanse<br>
+                    &nbsp;&nbsp;- Quadgrammer (4): ⭐ Beste for de fleste formål<br>
+                    &nbsp;&nbsp;- Pentagrammer (5): Svært spesifikk, identifiserer unike fraser<br>
+                    &nbsp;&nbsp;- Hexagrammer (6): Ekstremt presis, best for lange tekster<br>
+                    &nbsp;&nbsp;- Tilpasset (2-10): Eksperimentell analyse med valgfri lengde
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Cryptanalysis Panel -->
+        <div class="panel" id="advancedPanel" style="display: none;">
+            <h2 class="panel-title">🔬 Avansert Kryptoanalyse</h2>
+            
+            <!-- Cribs (Kjente ord) -->
+            <div class="input-group">
+                <label for="cribInput">🔑 Cribs - Kjente ord/fraser:</label>
+                <input type="text" id="cribInput" placeholder="Eks: 'hemmelig', 'viktig', 'konfidensiell'">
+                <button onclick="searchCribs()" style="margin-top: 10px; width: 100%;">
+                    <span>🔍 Søk etter Cribs</span>
+                </button>
+            </div>
+
+            <div id="cribResults" style="margin-top: 15px;"></div>
+
+            <!-- Hill Climbing Algorithm -->
+            <div class="input-group" style="margin-top: 25px;">
+                <label>⛰️ Hill Climbing Optimalisering:</label>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Iterasjoner</div>
+                        <div class="stat-value" id="hillIterations">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Beste Score</div>
+                        <div class="stat-value" id="hillBestScore">0.00</div>
+                    </div>
+                </div>
+                <button onclick="runHillClimbing()" style="margin-top: 10px; width: 100%;">
+                    <span>🚀 Kjør Hill Climbing</span>
+                </button>
+                <div id="hillClimbingResult" style="margin-top: 15px;"></div>
+            </div>
+
+            <!-- Pattern Recognition -->
+            <div class="input-group" style="margin-top: 25px;">
+                <label>🔍 Mønstergjenkjenning:</label>
+                <button onclick="runPatternRecognition()" style="width: 100%;">
+                    <span>🎯 Analyser Mønstre</span>
+                </button>
+                <div id="patternResults" style="margin-top: 15px;"></div>
+            </div>
+
+            <!-- Polyalphabetic Detection -->
+            <div class="input-group" style="margin-top: 25px;">
+                <label>🔀 Polyalfabetisk Deteksjon:</label>
+                <div id="polyDetection" style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; margin-top: 10px;">
+                    <div style="color: var(--text-muted); margin-bottom: 10px;">
+                        Analyserer for Vigenère, Playfair, og andre komplekse chiffer...
+                    </div>
+                    <button onclick="runPolyalphabeticTest()" style="width: 100%;">
+                        <span>🧪 Test Polyalfabetisk</span>
+                    </button>
+                </div>
+                <div id="polyResults" style="margin-top: 15px;"></div>
+            </div>
+
+            <!-- N-gram Frequency Table -->
+            <div class="input-group" style="margin-top: 25px;">
+                <label>📊 Top 10 N-grammer i teksten:</label>
+                <div id="ngramTable" style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; margin-top: 10px; max-height: 300px; overflow-y: auto;"></div>
+            </div>
+        </div>
+
+        <!-- Auto-Solve Results -->
+        <div class="panel" id="autoSolvePanel" style="display: none;">
+            <h2 class="panel-title">🎯 Auto-Solve Forslag</h2>
+            <div class="loading" id="autoSolveLoading">⚡ Analyserer med heuristisk algoritme...</div>
+            <div id="autoSolveResults"></div>
+        </div>
+
+        <!-- Brute Force Results -->
+        <div class="panel" id="bruteForcePanel" style="display: none;">
+            <h2 class="panel-title">💥 Brute Force Resultater</h2>
+            <div class="loading" id="bruteForceLoading">⚡ Genererer alle mulige rotasjoner...</div>
+            <div class="brute-force-grid" id="bruteForceResults"></div>
+        </div>
+
+        <!-- Substitution Cipher Solver -->
+        <div class="panel">
+            <h2 class="panel-title">🔀 SUBSTITUSJONSLØSER (for ikke-Caesar chiffer)</h2>
+            
+            <div class="info-box" style="background: rgba(255, 107, 107, 0.1); border-color: var(--accent-red);">
+                <strong>📚 Hvordan bruke substitusjonsløseren:</strong><br>
+                1. Lim inn kryptert tekst ovenfor<br>
+                2. Se frekvensanalysen - sammenlign med norsk (E=16%, R=9%, N=8%, T=7%)<br>
+                3. Klikk "Auto-Løs Substitusjon" for automatisk løsning<br>
+                4. ELLER bruk manuell mapping nedenfor for å teste bokstavbytter<br>
+                5. Kombinér med cribs (kjente ord) for beste resultat
+            </div>
+
+            <div class="button-grid">
+                <button onclick="autoSolveSubstitution()">
+                    <span>🤖 Auto-Løs Substitusjon</span>
+                </button>
+                <button onclick="showSubstitutionMapping()">
+                    <span>🗺️ Vis Mappingtabell</span>
+                </button>
+                <button onclick="resetSubstitutionMapping()">
+                    <span>🔄 Reset Mapping</span>
+                </button>
+            </div>
+
+            <div id="substitutionResult" style="margin-top: 20px;"></div>
+
+            <!-- Manual Substitution Mapping Table -->
+            <div id="substitutionMappingPanel" style="display: none; margin-top: 25px;">
+                <h3 style="color: var(--primary-cyan); margin-bottom: 15px;">🗺️ Manuell Bokstavmapping</h3>
+                <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 8px;">
+                    <p style="color: var(--text-muted); margin-bottom: 15px;">
+                        Endre mappingen ved å klikke på en kryptert bokstav og velge klartext-bokstav:
+                    </p>
+                    <div id="mappingTable" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px;"></div>
+                    <button onclick="applyManualMapping()" style="width: 100%; margin-top: 20px;">
+                        <span>✅ Anvend Mapping</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Frequency Comparison Chart -->
+            <div style="margin-top: 25px;">
+                <h3 style="color: var(--primary-cyan); margin-bottom: 15px;">📊 Frekvenssammenligning</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <h4 style="color: var(--text-muted); margin-bottom: 10px;">Din tekst:</h4>
+                        <div id="cipherFreqChart" style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; min-height: 200px;"></div>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text-muted); margin-bottom: 10px;">Norsk (forventet):</h4>
+                        <div id="norwegianFreqChart" style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; min-height: 200px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
