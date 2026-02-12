@@ -60,11 +60,15 @@
   margin: 0;
 }
 
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
 .hero-content .animated-border {
-  position: absolute;
-  right: 150px;
-  top: 50%;
-  transform: translateY(-50%);
+  display: inline-block;
 }
 
 .hero-copy {
